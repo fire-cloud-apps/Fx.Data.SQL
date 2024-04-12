@@ -15,10 +15,18 @@ namespace Fx.Data.SQL.Interface;
 /// </summary>
 public interface IEntityService
 {
-    long Create(string database, string entity, Parameters jsonData);
+    #region Get & Filter Methods
+    dynamic? GetById(string database, string entity, string id);
     dynamic? GetSingle(string database, string entity, Conditions conditionColumns);
     dynamic? GetByPage(string database, string entity, Conditions conditionColumns);
     dynamic? GetByPage(string database, string entity, FilterParams filters);
+    #endregion
+
+    #region Update Methods
+    long Create(string database, string entity, Parameters jsonData);
+    dynamic? Update(string database, string entity, Parameters jsonData);
+    dynamic? Delete(string database, string entity, long deleteId);
+    #endregion
 }
 /*
         Records GetAll(string tableName, Conditions where = null, Joins joins = null, bool hasDeleted = true, string schema = null);

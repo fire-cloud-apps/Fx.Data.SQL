@@ -2,6 +2,7 @@ using Fx.Data.SQL.Handler;
 using Fx.Data.SQL.Helpers;
 using Fx.Data.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Diagnostics;
 using Parameters = System.Collections.Generic.Dictionary<string, string>;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,27 +24,32 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 #region Exception Handling
-//app.UseExceptionHandler(exceptionHandlerApp =>
-//{
-//    exceptionHandlerApp.Run(async httpContext =>
-//    {
-//        //var exceptionHandlerPathFeature = httpContext.Features.Get<IExceptionHandlerPathFeature>();
-//        //var exception = exceptionHandlerPathFeature.Error; for custom exceptions and filters        
+app.UseExceptionHandler(exceptionHandlerApp =>
+{
+    //Ref: https://learn.microsoft.com/en-us/answers/questions/697739/error-handling-in-net6-minimal-api
+    exceptionHandlerApp.Run(async httpContext =>
+    {
+        var exceptionHandlerPathFeature = httpContext.Features.Get<IExceptionHandlerPathFeature>();
+        if(exceptionHandlerPathFeature is not null)
+        {
+            var exception = exceptionHandlerPathFeature.Error;// for custom exceptions and filters 
+            app.Logger.LogError(exception, exception.Message);
+            ResponseModel responseModel = new ResponseModel()
+            {
+                Data = Array.Empty<string>(),
+                Message = exception.Message,
+                Success = false
+            };
+            await httpContext.Response.WriteAsJsonAsync(responseModel);
+        }
+    });
+});
 
-//        var pds = httpContext.RequestServices.GetService<IProblemDetailsService>();
-//        if (pds == null
-//            || !await pds.TryWriteAsync(new() { HttpContext = httpContext }))
-//        {
-//            // Fallback behavior
-//            await httpContext.Response.WriteAsync("Fallback: An error occurred.");
-//        }
-//    });
-//});
 
-//app.MapGet("/exception", () =>
-//{
-//    throw new InvalidOperationException("Sample Exception");
-//});
+app.MapGet("/exception", () =>
+{
+    throw new InvalidOperationException("Sample Exception");
+});
 #endregion
 
 #region Demo API
@@ -68,14 +74,44 @@ app.MapGet("/weatherforecast", () =>
 .WithOpenApi();
 #endregion
 
+#region SQL Server DB Settings
 string connectionString = "Server=localhost;Database={0};User Id=sa;Password=System@1984;TrustServerCertificate=True;";//DMS
 IEntityService entityService = new SQLServerEntityService(connectionString, app.Logger);
+#endregion
 
 #region Generic Insertion
 app.MapPost("mssql-api/{db}/{entity}/create", (string db, string entity, [FromBody] Parameters data) =>
 {
     var resultId = entityService.Create(db, entity, data);
-    return Results.Ok($"Created Record Id:{resultId}. On DB: {db}, Table: {entity}, Data: {Conversions.DictionaryToJson(data)}");
+    return ReturnAsSuccess(resultId);
+    
+});
+#endregion
+
+
+#region Generic Update
+app.MapPut("mssql-api/{db}/{entity}/update", (string db, string entity, [FromBody] Parameters data) =>
+{
+    var resultId = entityService.Update(db, entity, data);
+    return ReturnAsSuccess(resultId);
+});
+#endregion
+
+#region Generic Delete
+//Ref: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0
+app.MapDelete("mssql-api/{db}/{entity}/delete/{id}", (string db, string entity, long id) =>
+{
+    var resultId = entityService.Delete(db, entity, id);
+    return ReturnAsSuccess(resultId);
+});
+#endregion
+
+#region Generic Select By Id
+app.MapGet("mssql-api/{db}/{entity}/get/{id}", (string db, string entity, string id) =>
+{
+    var results = entityService.GetById(db, entity, id);
+    app.Logger.LogInformation($"Selected Record:{results}");
+    return ReturnAsSuccess(results);
 });
 #endregion
 
@@ -84,7 +120,7 @@ app.MapPost("mssql-api/{db}/{entity}/get-one", (string db, string entity, [FromB
 {
     var results = entityService.GetSingle(db, entity, conditions);
     app.Logger.LogInformation($"Selected Record:{results}");
-    return Results.Ok(results);
+    return ReturnAsSuccess(results);
 });
 #endregion
 
@@ -93,7 +129,7 @@ app.MapPost("mssql-api/{db}/{entity}/get-by-page", (string db, string entity, [F
 {
     var results = entityService.GetByPage(db, entity, conditions);
     app.Logger.LogInformation($"Selected Record: {results}");
-    return Results.Ok(results);
+    return ReturnAsSuccess(results);
 });
 #endregion
 
@@ -102,11 +138,27 @@ app.MapPost("mssql-api/{db}/{entity}/get-by-filter", (string db, string entity, 
 {
     var results = entityService.GetByPage(db, entity, filter);
     app.Logger.LogInformation($"Get by Filter Record: {results}");
-    return Results.Ok(results);
+    return ReturnAsSuccess(results);
+    
 });
 #endregion
 
 app.Run();
+
+IResult ReturnAsSuccess(dynamic? result)
+{   
+    ResponseModel responseModel = new ResponseModel()
+    {
+        Data = result,
+        Message = "Executed Successfully",
+        Success = true
+    };
+    //if(result is null)
+    //{
+    //    return Results.NoContent();
+    //}
+    return Results.Ok(responseModel);
+} 
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {

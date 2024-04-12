@@ -11,7 +11,13 @@ public class DBTrace : ITrace
 {
     void ITrace.AfterExecution<TResult>(ResultTraceLog<TResult> log)
     {
-        Console.WriteLine($"After Execution SQL Statement: {log.ExecutionTime}");
+        Console.WriteLine($"After Execution SQL Statement: {log.ExecutionTime} IsError:{log.BeforeExecutionLog.IsThrowException}");
+    }    
+
+    void ITrace.BeforeExecution(CancellableTraceLog log)
+    {        
+        
+        Console.WriteLine($"Before Execution SQL Statement: {log.Statement} Key: {log.Key}");
     }
 
     Task ITrace.AfterExecutionAsync<TResult>(ResultTraceLog<TResult> log, CancellationToken cancellationToken)
@@ -19,13 +25,6 @@ public class DBTrace : ITrace
         Console.WriteLine($"After Execution SQL Statement: {log.ExecutionTime}");
         return null;
     }
-
-    void ITrace.BeforeExecution(CancellableTraceLog log)
-    {        
-        
-        Console.WriteLine($"Before Execution SQL Statement: {log.Statement} Key: {log.Key}, Parms : {log.Parameters.FirstOrDefault()?.Value}");
-    }
-
     Task ITrace.BeforeExecutionAsync(CancellableTraceLog log, CancellationToken cancellationToken)
     {
         

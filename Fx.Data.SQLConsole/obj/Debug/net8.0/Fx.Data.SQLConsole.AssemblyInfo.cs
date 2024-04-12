@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fx.Data.SQLConsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba593fce60515b9935dd4253599377dfad365cf9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff1f6d75ea2703f6f8236b5583bf65b59ac42f1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fx.Data.SQLConsole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fx.Data.SQLConsole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

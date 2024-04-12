@@ -1,33 +1,19 @@
-﻿using Fx.Data.SQL.Helpers;
-using Fx.Data.SQL.Interface;
-using Microsoft.Data.SqlClient;
-using RepoDb.Enumerations;
-using RepoDb;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fx.Data.SQL.Handler;
-
-
-using RepoDb;
-using System.Collections.Immutable;
+﻿using RepoDb;
 using Microsoft.Data.SqlClient;
 using Fx.Data.SQL.Interface;
 using Microsoft.Extensions.Logging;
 using Fx.Data.SQL.Helpers;
 using Parameters = System.Collections.Generic.Dictionary<string, string>;
-using Record = System.Collections.Generic.IDictionary<string, object>;
-using Records = System.Collections.Generic.List<System.Collections.Generic.IDictionary<string, object>>;
-using Operation = RepoDb.Enumerations.Operation;
 using RepoDb.Enumerations;
 
+namespace Fx.Data.SQL.Handler;
 
+//Ref: SQL Server Data Type Reference,
+//https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
 
-//Ref: SQL Server Data Type Reference, https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
-
+/// <summary>
+/// SQL Server Entity Service to handle CRUD Operations
+/// </summary>
 public class SQLServerEntityService : IEntityService
 {
     #region Global Property
@@ -61,9 +47,9 @@ public class SQLServerEntityService : IEntityService
     public long Create(string database, string entity, Parameters jsonData)
     {
         var parameter = Conversions.ParameterConversion(jsonData);
-
+        //Other Errors: If the data mismatch happens during conversion, it may throw an error.
         #region
-        //Ref: https://repodb.net/operation/insert via via Anonymous Type.        
+        //Ref: https://repodb.net/operation/insert via via Anonymous Type.
         #endregion
         int id;
         string connString = string.Format(ConnectionString, database);
@@ -75,6 +61,60 @@ public class SQLServerEntityService : IEntityService
     }
     #endregion
 
+    #region Update
+    public dynamic? Update(string database, string entity, Parameters jsonData)
+    {
+        var parameter = Conversions.ParameterConversion(jsonData);
+        //Other Errors: If the data mismatch happens during conversion, it may throw an error.
+        #region
+        //https://repodb.net/operation/update via Anonymous Type.
+        #endregion
+        int affectedRecords;
+        string connString = string.Format(ConnectionString, database);
+        using (var connection = new SqlConnection(connString))
+        {
+            affectedRecords = connection.Update(
+                tableName: entity, 
+                entity: parameter,
+                trace: TraceFactory.CreateTracer());
+        }
+        return affectedRecords;
+    }
+    #endregion
+
+    #region Delete
+    public dynamic? Delete(string database, string entity, long deleteId)
+    {
+        #region
+        //https://repodb.net/operation/delete via Anonymous Type.
+        #endregion
+        int deletedRows;
+        string connString = string.Format(ConnectionString, database);
+        using (var connection = new SqlConnection(connString))
+        {
+            deletedRows = connection.Delete(
+                entity, deleteId,
+                trace: TraceFactory.CreateTracer());
+        }
+        return deletedRows;
+    }
+    #endregion
+
+    #region Get By Id
+    public dynamic? GetById(string database, string entity, string id)
+    {
+        IEnumerable<dynamic> recordSet;
+        string connString = string.Format(ConnectionString, database);
+        using (var connection = new SqlConnection(connString))
+        {
+            //Ref: https://repodb.net/class/parameter#queryfield
+            recordSet = connection.Query(entity, new QueryField("Id", id), trace: TraceFactory.CreateTracer());
+        }
+        return recordSet.FirstOrDefault();
+    }
+    #endregion
+
+    #region Get Single
     public dynamic? GetSingle(string database, string entity, Conditions conditions)
     {
         IEnumerable<dynamic> recordSet;
@@ -86,7 +126,9 @@ public class SQLServerEntityService : IEntityService
         }
         return recordSet.FirstOrDefault();
     }
+    #endregion
 
+    #region Get By Page with Simple Conditions
     public dynamic? GetByPage(string database, string entity, Conditions conditions)
     {
         IEnumerable<dynamic> recordSet;
@@ -97,31 +139,38 @@ public class SQLServerEntityService : IEntityService
             //1. https://repodb.net/operation/batchquery
             //2. https://repodb.net/feature/targeted
 
+            #region Order By
             var orderBy = new[]
             {
                 new OrderField("Date", Order.Descending)
             };
-            var fields = Field.From("Id", "Date", "DateTime");
-            var where = new QueryField(conditions.Field, Conversions.GetOperation(conditions.Condition), conditions.Value);
+            #endregion
 
+            #region Where
+            var where = new QueryField(conditions.Field, Conversions.GetOperation(conditions.Condition), conditions.Value);
+            #endregion
+
+            #region Execution
             recordSet = connection.BatchQuery
                  (
                  tableName: entity,
-                 fields: fields,
                  where: where,
                  trace: TraceFactory.CreateTracer(),
-                 page: 0,
-                 rowsPerBatch: 5,
+                 page: conditions.Page,
+                 rowsPerBatch: conditions.RowsPerBatch,
                  orderBy: orderBy
                  );
+            #endregion
         }
 
         return recordSet;
     }
+    #endregion
 
+    #region Get By Page with Complex Conditions - FilterParams
     public dynamic? GetByPage(string database, string entity, FilterParams filters)
     {
-        IEnumerable<dynamic> recordSet;
+        IEnumerable<object> recordSet;
         string connString = string.Format(ConnectionString, database);
         using (var connection = new SqlConnection(connString))
         {
@@ -130,55 +179,18 @@ public class SQLServerEntityService : IEntityService
             //2. https://repodb.net/feature/targeted
 
             #region Sorting
-            //var orderBy = new[]
-            //{
-            //    new OrderField("Date", Order.Descending)
-            //};
-            IList<OrderField> orderBy = new List<OrderField>();
-            foreach(var sort in filters.Sort)
-            {
-                orderBy.Add(new OrderField(sort.Field, sort.OrderBy));
-            }
+            IList<OrderField> orderBy = Utilities.GetOrderBy(filters.Sort);            
             #endregion
 
             #region Targeted Fields
-            //var fields = Field.From("Id", "Date", "DateTime"); 
-            //Field.Parse(filters.Fields);  - does not works
-            //Field.From("Id", "Date", "DateTime"); - Works
-            //var fields = Field.Parse(filters.Fields.ToArray());-> does not works
-            var fields = Field.From(filters.Fields.ToArray());
+            IEnumerable<Field>? fields = filters.Fields is null ? null : Field.From(filters.Fields.ToArray());
             #endregion
 
             #region Where 
-            //var where = new QueryField(conditions.Field, Conversions.GetOperation(conditions.Condition), conditions.Value);
-            IList<QueryField> andQueryField = new List<QueryField>();
-            IList<QueryField> orQueryField = new List<QueryField>();
-            foreach (var condition in filters.Filter)
-            {
-                //AND
-                if (condition.And is not null)
-                {
-                    foreach (var and in condition.And)
-                    {
-                        andQueryField.Add(new QueryField(and.Field, Conversions.GetOperation(and.Condition), and.Value));
-                    }
-                }
-                //OR
-                if (condition.Or is not null)
-                {
-                    foreach (var or in condition.Or)
-                    {
-                        orQueryField.Add(new QueryField(or.Field, Conversions.GetOperation(or.Condition), or.Value));
-                    }
-                }
-                
-            }
-            //Grouping
-            var orWhere = new QueryGroup(orQueryField, Conjunction.Or);
-            var andWhere = new QueryGroup(andQueryField, Conjunction.And);
-            var where = new QueryGroup( new[] { orWhere, andWhere });
+            QueryGroup where = Utilities.GetQueryGroup(filters.Filter);
             #endregion
 
+            #region Execution Layer
             recordSet = connection.BatchQuery
                  (
                  tableName: entity,
@@ -189,20 +201,12 @@ public class SQLServerEntityService : IEntityService
                  rowsPerBatch: filters.RowsPerBatch,
                  orderBy: orderBy
                  );
-            /*
-             Generated Query:
-                SELECT [Id], [Date], [DateTime] FROM [TestDates] WHERE 
-                (([Bit] = 'true') AND ([Date] = '2024-10-04')) 
-                ORDER BY [Date] DESC, 
-                [Id] DESC OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY ;
-            But batchQuery Method returns '0'. Why?
-             */
+            #endregion
         }
 
         return recordSet;
     }
-
-
+    #endregion
 
 }
 

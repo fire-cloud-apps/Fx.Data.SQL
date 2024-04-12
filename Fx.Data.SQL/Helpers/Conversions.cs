@@ -15,7 +15,7 @@ public class Conversions
         foreach (var item in parameter)
         {
             //Console.WriteLine($"Key: {item.Key} Value:{item.Value} Type: {item.GetType().Name}");
-            target.Add(item.Key, item.Value);
+            target.Add(item.Key, GetType(item.Value));
         }
         return target;
     }
@@ -75,41 +75,93 @@ public class Conversions
         return operation;
     }
 
+    //TODO: Need to extend this method for all Data Types.
     /// <summary>
     /// Converts to various Types.
-    /// Currently Supported types: int,float,long, boolean, datetime
+    /// Currently Supported types: int,float,long, boolean, datetime.
+    /// Ref: 
+    /// https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/built-in-types
+    /// https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">actual value to be converted</param>
+    /// <returns>converted value return with right data type.</returns>  
     public static object GetType(string value)
     {
         object objValue = value;
-        
+
         if (int.TryParse(value, out int intValue))
-        {            
             objValue = intValue;
-        }
-        if (float.TryParse(value, out float floatValue))
-        {
+        else if (float.TryParse(value, out float floatValue))
             objValue = floatValue;
-        }
-        if (long.TryParse(value, out long longValue))
-        {
+        else if (long.TryParse(value, out long longValue))
             objValue = longValue;
-        }
-        else if(DateTime.TryParse(value, out DateTime dtValue))
-        {
-            objValue = dtValue;
-        }
-        else if (bool.TryParse(value, out bool boValue))
-        {
-            objValue = boValue;
-        }
+        else if (decimal.TryParse(value, out decimal decimalValue))
+            objValue = decimalValue;
+        else if (bool.TryParse(value, out bool boolValue))
+            objValue = boolValue;
+        else if (byte.TryParse(value, out byte byteValue))
+            objValue = byteValue;
         else
         {
-            objValue = value;
+            // Use Type.GetType() for non-primitive types
+            Type customType = Type.GetType(value);
+            if (customType != null)
+                objValue = Activator.CreateInstance(customType);
         }
 
         return objValue;
-    }    
+    }
+
+    /*
+     public static object GetType(string value)
+    {
+        object objValue = value;
+        do
+        {
+            if (int.TryParse(value, out int intValue))
+            {
+                objValue = intValue;
+                break;
+            }
+            if (float.TryParse(value, out float floatValue))
+            {
+                objValue = floatValue;
+                break;
+            }
+            if (long.TryParse(value, out long longValue))
+            {
+                objValue = longValue;
+                break;
+            }
+            if (decimal.TryParse(value, out decimal decimalValue))
+            {
+                objValue = decimalValue;
+                break;
+            }
+            else if (DateTime.TryParse(value, out DateTime dtValue))
+            {
+                objValue = dtValue;
+                break;
+            }
+            else if (bool.TryParse(value, out bool boValue))
+            {
+                objValue = boValue;
+                break;
+            }
+            else if (byte.TryParse(value, out byte byteValue))
+            {
+                objValue = byteValue;
+                break;
+            }
+            else
+            {
+                objValue = value;
+                break;
+            }
+        } while (false);
+        return objValue;
+        
+    }
+     */
+
 }

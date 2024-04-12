@@ -9,9 +9,9 @@ POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/test/create/
 Accept: application/json
 Content-Type: application/json
 {
-  "C1": "Field 1",
-  "C2": "Field 2",
-  "Age": "31"
+  "C1": "Field 3",
+  "C2": "Field 4",
+  "Age": "33"
 }
 
 ###
@@ -19,31 +19,58 @@ POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/user/create/
 Accept: application/json
 Content-Type: application/json
 {
-  "Id":"1",
   "UserName": "SR Ganesh Ram",
-  "Password": "System!232-Age31",
-  "Salt": "Age31",
-  "AccessToken":"Xmd090do-ol9kldk-MKLSdfiklos==",
-  "RefreshToken":"klodlold-md090do-ol9kldk-MKLSdfiklos==",
+  "Password": "System!232-Age35",
+  "Salt": "Age35",
+  "AccessToken":"dfsdfXmd090do-ol9kldk-MKLSdfiklos==",
+  "RefreshToken":"sdfsdfklodlold-md090do-ol9kldk-MKLSdfiklos==",
   "IsSysAdmin":"true",
-  "LastLogin":"09-04-2024",
+  "LastLogin":"09-05-2024",
   "ExpiresIn":"20",
   "ExpiresOn":"2054",
   "Deleted":"false"
 }
 
 ###
-POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestNumerics/create/
+
+PUT {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/user/update/
+Action: Update
 Accept: application/json
 Content-Type: application/json
 {
-  
-  "Numeric": "48585969",
-  "SmallInt": "7445",
-  "TinyInt": "145",
-  "Decimal":"785496976986",
-  "Float":"452789466434",
-  "Money":"8574521369895"
+    "Id": "1",
+    "UserName": "SR Ganesh Ram",
+    "Password": "Laptop!232-Age35",
+    "Salt": "Age235",
+    "AccessToken":"dfsdfXmd090do-ol9kldk-MKLSdfiklos==",
+    "RefreshToken":"sdfsdfklodlold-md090do-ol9kldk-MKLSdfiklos==",
+    "IsSysAdmin":"true",
+    "LastLogin":"09-05-2024",
+    "ExpiresIn":"20",
+    "ExpiresOn":"2054",
+    "Deleted":"false"
+}
+
+
+###
+DELETE {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/test/delete/1
+Action: Delete
+X-SOFT-DELETE: false
+Accept: application/json
+Content-Type: application/json
+
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestNumerics/create/
+Accept: application/json
+Content-Type: application/json
+{  
+  "Numeric": "7485874",
+  "SmallInt": "12545",
+  "TinyInt": "142",
+  "Decimal":"4524552.23",
+  "Float":"155863.23",
+  "Money":"4589393331"
 }
 
 ###
@@ -55,6 +82,12 @@ Content-Type: application/json
   "DateTime": "02-11-2024 03:52:52",
   "Bit":"false"
 }
+
+###
+GET {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get/5
+Filter: Get-By-Id
+Accept: application/json
+Content-Type: application/json
 
 ###
 POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-one/
@@ -77,15 +110,16 @@ Content-Type: application/json
 }
 ###
 
-POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestNumerics/get-by-filter/
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-by-filter/
+Filter: Both-And-OR-Test
 Accept: application/json
 Content-Type: application/json
 {
-    "Fields":["Id","Numeric","SmallInt"],
+    "Fields":["Id","Date","DateTime","Bit"],
     "Sort":
     [        
         {
-            "Field": "Id",
+            "Field": "Date",
             "OrderBy":"Descending"
         }
     ],
@@ -94,8 +128,15 @@ Content-Type: application/json
         {
             "And":[
                 {
-                    "Field":"TinyInt",
-                    "Value":"145",
+                    "Field":"Date",
+                    "Value":"2024-10-04",
+                    "Condition":"eq"
+                }
+            ],
+            "Or":[
+                {
+                    "Field":"Bit",
+                    "Value":"true",
                     "Condition":"eq"
                 }
             ]
@@ -103,6 +144,104 @@ Content-Type: application/json
     ],
     "Page":0,
     "RowsPerBatch":5
+}
+
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-by-filter/
+Filter: No-Field-Test
+Accept: application/json
+Content-Type: application/json
+{
+    "Sort":
+    [        
+        {
+            "Field": "Date",
+            "OrderBy":"Descending"
+        }
+    ],
+    "Filter":[],
+    "Page":0,
+    "RowsPerBatch":5
+}
+
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-by-filter/
+Filter: No-Filter-Test
+Accept: application/json
+Content-Type: application/json
+{
+    "Fields":["Id","Date","DateTime","Bit"],
+    "Sort":
+    [        
+        {
+            "Field": "Date",
+            "OrderBy":"Descending"
+        }
+    ],
+    "Filter":[],
+    "Page":0,
+    "RowsPerBatch":25
+}
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-by-filter/
+Filter: Only-OR-Test
+Accept: application/json
+Content-Type: application/json
+{
+    "Fields":["Id","Date","DateTime","Bit"],
+    "Sort":
+    [        
+        {
+            "Field": "Date",
+            "OrderBy":"Descending"
+        }
+    ],
+    "Filter":[
+        {    
+            "Or":[
+                {
+                    "Field":"Bit",
+                    "Value":"false",
+                    "Condition":"eq"
+                }
+            ]
+        }
+    ],
+    "Page":0,
+    "RowsPerBatch":25
+}
+
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-by-filter/
+Filter: Only-AND-Test
+Accept: application/json
+Content-Type: application/json
+{
+    "Fields":["Id","Date","DateTime","Bit"],
+    "Sort":
+    [        
+        {
+            "Field": "Date",
+            "OrderBy":"Descending"
+        }
+    ],
+    "Filter":[
+        {    
+            "Or":[
+                {
+                    "Field":"Bit",
+                    "Value":"false",
+                    "Condition":"eq"
+                }
+            ]
+        }
+    ],
+    "Page":0,
+    "RowsPerBatch":25
 }
 
 

@@ -27,6 +27,8 @@ public class Conditions
     /// gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
     /// </summary>
     public string Condition { get; set; }
+    public int Page { get; set; } = 0;
+    public int RowsPerBatch { get; set; } = 10;
 }
 
 

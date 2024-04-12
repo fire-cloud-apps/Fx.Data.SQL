@@ -14,30 +14,44 @@ public class FilterParams
     public List<string> Fields { get; set; }
     public List<Sort> Sort { get; set; }
     public List<Filter> Filter { get; set; }
-    public int Page { get; set; }
-    public int RowsPerBatch { get; set; }
+    public int Page { get; set; } = 0;
+    public int RowsPerBatch { get; set; } = 10;
 }
 
-// Root myDeserializedClass = JsonConvert.DeserializeObject<FilterParams>(myJsonResponse);
-public class And
-{
-    public string Field { get; set; }
-    public string Value { get; set; }
+public class InputParams
+{    public string Field { get; set; }
+    public object _value = string.Empty;
+    public object Value
+    {
+        get
+        {
+            //Currently supports primary items, we should extend this.
+            var convertedValue = Conversions.GetType(_value.ToString());
+            return convertedValue;
+        }
+        set
+        {
+            _value = value;
+        }
+    }
     public string Condition { get; set; }
 }
 
+// Root myDeserializedClass = JsonConvert.DeserializeObject<FilterParams>(myJsonResponse);
+public class And : InputParams
+{
+    
+}
+public class Or : InputParams
+{
+}
 public class Filter
 {
     public List<And> And { get; set; }
     public List<Or> Or { get; set; }
 }
 
-public class Or
-{
-    public string Field { get; set; }
-    public string Value { get; set; }
-    public string Condition { get; set; }
-}
+
 
 public class Sort
 {
