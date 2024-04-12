@@ -1,0 +1,113 @@
+@Fx_SQL_ServiceAPIs_HostAddress = http://localhost:5295
+
+GET {{Fx_SQL_ServiceAPIs_HostAddress}}/weatherforecast/
+Accept: application/json
+
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/test/create/
+Accept: application/json
+Content-Type: application/json
+{
+  "C1": "Field 1",
+  "C2": "Field 2",
+  "Age": "31"
+}
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/user/create/
+Accept: application/json
+Content-Type: application/json
+{
+  "Id":"1",
+  "UserName": "SR Ganesh Ram",
+  "Password": "System!232-Age31",
+  "Salt": "Age31",
+  "AccessToken":"Xmd090do-ol9kldk-MKLSdfiklos==",
+  "RefreshToken":"klodlold-md090do-ol9kldk-MKLSdfiklos==",
+  "IsSysAdmin":"true",
+  "LastLogin":"09-04-2024",
+  "ExpiresIn":"20",
+  "ExpiresOn":"2054",
+  "Deleted":"false"
+}
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestNumerics/create/
+Accept: application/json
+Content-Type: application/json
+{
+  
+  "Numeric": "48585969",
+  "SmallInt": "7445",
+  "TinyInt": "145",
+  "Decimal":"785496976986",
+  "Float":"452789466434",
+  "Money":"8574521369895"
+}
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/create/
+Accept: application/json
+Content-Type: application/json
+{  
+  "Date": "10-04-2024",
+  "DateTime": "02-11-2024 03:52:52",
+  "Bit":"false"
+}
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-one/
+Accept: application/json
+Content-Type: application/json
+{  
+  "Field": "Date",
+  "Value": "2024-10-05",
+  "Condition":"eq"
+}
+
+###
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestDates/get-by-page/
+Accept: application/json
+Content-Type: application/json
+{  
+  "Field": "Date",
+  "Value": "2024-10-04",
+  "Condition":"eq"
+}
+###
+
+POST {{Fx_SQL_ServiceAPIs_HostAddress}}/mssql-api/dms/TestNumerics/get-by-filter/
+Accept: application/json
+Content-Type: application/json
+{
+    "Fields":["Id","Numeric","SmallInt"],
+    "Sort":
+    [        
+        {
+            "Field": "Id",
+            "OrderBy":"Descending"
+        }
+    ],
+    "Filter":
+    [
+        {
+            "And":[
+                {
+                    "Field":"TinyInt",
+                    "Value":"145",
+                    "Condition":"eq"
+                }
+            ]
+        }
+    ],
+    "Page":0,
+    "RowsPerBatch":5
+}
+
+
+###
+GET {{Fx_SQL_ServiceAPIs_HostAddress}}/exception
+
+###
+

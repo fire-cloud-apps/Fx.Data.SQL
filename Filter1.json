@@ -1,0 +1,34 @@
+{
+    "Fields":["Id","Date","DateTime"],
+    "Sort":[
+        {
+            "Field": "Date",
+            "OrderBy":"Desc"
+
+        },
+        {
+            "Field": "Date",
+            "OrderBy":"Desc"
+        }
+    ],
+    "Filter":[
+        {
+            "And":[
+                {
+                    "Field":"Date",
+                    "Value":"2024-10-04",
+                    "Condition":"eq"
+                }
+            ],
+            "Or":[
+                {
+                    "Field":"Bit",
+                    "Value":"false",
+                    "Condition":"eq"
+                }
+            ]
+        }
+    ],
+    "Page":"0",
+    "RowsPerBatch":"5"
+}

@@ -1,0 +1,130 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.Data.SQL\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3A4F6E05-1C32-40D9-827B-2A16EE4A3A3E}|..\\Fx.SQL.ServiceAPIs\\Fx.SQL.ServiceAPIs.csproj|c:\\works\\github\\fx.data.sql\\fx.sql.serviceapis\\fx.sql.serviceapis.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEAE2C1C-0C4C-4505-A7D3-D16CDED9691B}|Fx.Data.SQL.csproj|c:\\works\\github\\fx.data.sql\\fx.data.sql\\handler\\sqlserverentityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEAE2C1C-0C4C-4505-A7D3-D16CDED9691B}|Fx.Data.SQL.csproj|solutionrelative:handler\\sqlserverentityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEAE2C1C-0C4C-4505-A7D3-D16CDED9691B}|Fx.Data.SQL.csproj|c:\\works\\github\\fx.data.sql\\fx.data.sql\\helpers\\dbtrace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEAE2C1C-0C4C-4505-A7D3-D16CDED9691B}|Fx.Data.SQL.csproj|solutionrelative:helpers\\dbtrace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A4F6E05-1C32-40D9-827B-2A16EE4A3A3E}|..\\Fx.SQL.ServiceAPIs\\Fx.SQL.ServiceAPIs.csproj|c:\\works\\github\\fx.data.sql\\fx.sql.serviceapis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEAE2C1C-0C4C-4505-A7D3-D16CDED9691B}|Fx.Data.SQL.csproj|c:\\works\\github\\fx.data.sql\\fx.data.sql\\helpers\\filterparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEAE2C1C-0C4C-4505-A7D3-D16CDED9691B}|Fx.Data.SQL.csproj|solutionrelative:helpers\\filterparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DBTrace.cs",
+              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.Data.SQL\\Helpers\\DBTrace.cs",
+              "RelativeDocumentMoniker": "Helpers\\DBTrace.cs",
+              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.Data.SQL\\Helpers\\DBTrace.cs",
+              "RelativeToolTip": "Helpers\\DBTrace.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAqwBUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-11T13:49:30.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FilterParams.cs",
+              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.Data.SQL\\Helpers\\FilterParams.cs",
+              "RelativeDocumentMoniker": "Helpers\\FilterParams.cs",
+              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.Data.SQL\\Helpers\\FilterParams.cs",
+              "RelativeToolTip": "Helpers\\FilterParams.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAA1wDwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-11T13:00:36.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.SQL.ServiceAPIs\\Program.cs",
+              "RelativeDocumentMoniker": "..\\Fx.SQL.ServiceAPIs\\Program.cs",
+              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.SQL.ServiceAPIs\\Program.cs",
+              "RelativeToolTip": "..\\Fx.SQL.ServiceAPIs\\Program.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAAAF4AAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-11T12:37:36.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SQLServerEntityService.cs",
+              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.Data.SQL\\Handler\\SQLServerEntityService.cs",
+              "RelativeDocumentMoniker": "Handler\\SQLServerEntityService.cs",
+              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.Data.SQL\\Handler\\SQLServerEntityService.cs",
+              "RelativeToolTip": "Handler\\SQLServerEntityService.cs",
+              "ViewState": "AQIAAK4AAAAAAAAAAAAAALIAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-11T11:45:40.448Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "d8ba8578-48a9-4a8f-a3ce-30a55b146de6",
+        "Display": 1,
+        "X": 282,
+        "Y": 22,
+        "Width": 1840,
+        "Height": 1031,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Fx.SQL.ServiceAPIs.http",
+              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.SQL.ServiceAPIs\\Fx.SQL.ServiceAPIs.http",
+              "RelativeDocumentMoniker": "..\\Fx.SQL.ServiceAPIs\\Fx.SQL.ServiceAPIs.http",
+              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Fx.SQL.ServiceAPIs\\Fx.SQL.ServiceAPIs.http",
+              "RelativeToolTip": "..\\Fx.SQL.ServiceAPIs\\Fx.SQL.ServiceAPIs.http",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAAGUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-04-11T12:43:44.064Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
