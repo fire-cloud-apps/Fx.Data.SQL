@@ -3,16 +3,7 @@
   "WorkspaceRootPath": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\AppHost.SQL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{85B989D0-6E14-4C5F-AFE9-28A8283A09F9}|..\\..\\Libray\\Fx.Data.SQL\\Fx.Data.SQL.csproj|c:\\works\\github\\fx.data.sql\\libray\\fx.data.sql\\interface\\ientityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}|..\\Fx.Data.SQLAPIs\\Fx.Data.SQLAPIs.csproj|c:\\works\\github\\fx.data.sql\\aspire\\fx.data.sqlapis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}|..\\Fx.Data.SQLAPIs\\Fx.Data.SQLAPIs.csproj|c:\\works\\github\\fx.data.sql\\aspire\\fx.data.sqlapis\\attributesfilter\\jwtauthorizeattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}|..\\Fx.Data.SQLAPIs\\Fx.Data.SQLAPIs.csproj|c:\\works\\github\\fx.data.sql\\aspire\\fx.data.sqlapis\\fx.data.sqlapis.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}|..\\Fx.Authentication.Service\\Fx.Authentication.Service.csproj|c:\\works\\github\\fx.data.sql\\aspire\\fx.authentication.service\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,52 +22,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IEntityService.cs",
-              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Libray\\Fx.Data.SQL\\Interface\\IEntityService.cs",
-              "RelativeDocumentMoniker": "..\\..\\Libray\\Fx.Data.SQL\\Interface\\IEntityService.cs",
-              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Libray\\Fx.Data.SQL\\Interface\\IEntityService.cs",
-              "RelativeToolTip": "..\\..\\Libray\\Fx.Data.SQL\\Interface\\IEntityService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAAAOAAAA",
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Authentication.Service\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "..\\Fx.Authentication.Service\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Authentication.Service\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "..\\Fx.Authentication.Service\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAAC0AAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T04:24:58.68Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Fx.Data.SQLAPIs.http",
-              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Data.SQLAPIs\\Fx.Data.SQLAPIs.http",
-              "RelativeDocumentMoniker": "..\\Fx.Data.SQLAPIs\\Fx.Data.SQLAPIs.http",
-              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Data.SQLAPIs\\Fx.Data.SQLAPIs.http",
-              "RelativeToolTip": "..\\Fx.Data.SQLAPIs\\Fx.Data.SQLAPIs.http",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAgwBcAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-04-14T13:00:52.61Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "JwtAuthorizeAttribute.cs",
-              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Data.SQLAPIs\\AttributesFilter\\JwtAuthorizeAttribute.cs",
-              "RelativeDocumentMoniker": "..\\Fx.Data.SQLAPIs\\AttributesFilter\\JwtAuthorizeAttribute.cs",
-              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Data.SQLAPIs\\AttributesFilter\\JwtAuthorizeAttribute.cs",
-              "RelativeToolTip": "..\\Fx.Data.SQLAPIs\\AttributesFilter\\JwtAuthorizeAttribute.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAA0wBwAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T12:09:16.39Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Data.SQLAPIs\\Program.cs",
-              "RelativeDocumentMoniker": "..\\Fx.Data.SQLAPIs\\Program.cs",
-              "ToolTip": "C:\\Works\\Github\\Fx.Data.SQL\\Aspire\\Fx.Data.SQLAPIs\\Program.cs",
-              "RelativeToolTip": "..\\Fx.Data.SQLAPIs\\Program.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAAAAUAAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T10:52:58.011Z",
+              "WhenOpened": "2024-04-15T04:57:15.374Z",
               "EditorCaption": ""
             }
           ]
