@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34707.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHost.SQL", "AppHost.SQL.csproj", "{617FB126-73CD-4934-8549-2B9B978C1BF5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Data.SQLAPIs", "..\Fx.Data.SQLAPIs\Fx.Data.SQLAPIs.csproj", "{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{6097C692-873C-4304-83EF-F4BF3FD8A7A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API's", "API's", "{AE984CE3-F3F6-45C3-9B90-646C9EB482BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Data.SQL", "..\..\Libray\Fx.Data.SQL\Fx.Data.SQL.csproj", "{85B989D0-6E14-4C5F-AFE9-28A8283A09F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Authentication.Service", "..\Fx.Authentication.Service\Fx.Authentication.Service.csproj", "{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Security", "..\..\Libray\Fx.Security\Fx.Security.csproj", "{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{617FB126-73CD-4934-8549-2B9B978C1BF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{617FB126-73CD-4934-8549-2B9B978C1BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{617FB126-73CD-4934-8549-2B9B978C1BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{617FB126-73CD-4934-8549-2B9B978C1BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C7F70A-A14D-41C4-B282-1FF29C8AFF89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85B989D0-6E14-4C5F-AFE9-28A8283A09F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85B989D0-6E14-4C5F-AFE9-28A8283A09F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85B989D0-6E14-4C5F-AFE9-28A8283A09F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85B989D0-6E14-4C5F-AFE9-28A8283A09F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67C7F70A-A14D-41C4-B282-1FF29C8AFF89} = {AE984CE3-F3F6-45C3-9B90-646C9EB482BE}
+		{85B989D0-6E14-4C5F-AFE9-28A8283A09F9} = {6097C692-873C-4304-83EF-F4BF3FD8A7A0}
+		{A46B3AD9-8378-4CA3-B74F-68B9E47FD620} = {AE984CE3-F3F6-45C3-9B90-646C9EB482BE}
+		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE} = {6097C692-873C-4304-83EF-F4BF3FD8A7A0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1375A831-73B8-4536-BA31-D48A7F98789B}
+	EndGlobalSection
+EndGlobal

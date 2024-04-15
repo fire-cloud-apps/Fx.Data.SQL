@@ -1,0 +1,24 @@
+C:\Works\POC\Santoyo\Fx.Security\bin\Release\net8.0\Fx.Security.deps.json
+C:\Works\POC\Santoyo\Fx.Security\bin\Release\net8.0\Fx.Security.dll
+C:\Works\POC\Santoyo\Fx.Security\bin\Release\net8.0\Fx.Security.pdb
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\Fx.Security.csproj.AssemblyReference.cache
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\Fx.Security.GeneratedMSBuildEditorConfig.editorconfig
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\Fx.Security.AssemblyInfoInputs.cache
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\Fx.Security.AssemblyInfo.cs
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\Fx.Security.csproj.CoreCompileInputs.cache
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\Fx.Security.dll
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\refint\Fx.Security.dll
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\Fx.Security.pdb
+C:\Works\POC\Santoyo\Fx.Security\obj\Release\net8.0\ref\Fx.Security.dll
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\bin\Release\net8.0\Fx.Security.deps.json
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\bin\Release\net8.0\Fx.Security.dll
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\bin\Release\net8.0\Fx.Security.pdb
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\Fx.Security.csproj.AssemblyReference.cache
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\Fx.Security.GeneratedMSBuildEditorConfig.editorconfig
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\Fx.Security.AssemblyInfoInputs.cache
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\Fx.Security.AssemblyInfo.cs
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\Fx.Security.csproj.CoreCompileInputs.cache
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\Fx.Security.dll
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\refint\Fx.Security.dll
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\Fx.Security.pdb
+C:\Works\POC\Santoyo\File Share - External\Fx.Security\obj\Release\net8.0\ref\Fx.Security.dll

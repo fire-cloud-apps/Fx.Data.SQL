@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Fx.SQL.ServiceAPIs.props" />
-</Project>

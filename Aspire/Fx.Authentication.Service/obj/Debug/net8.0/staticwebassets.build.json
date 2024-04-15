@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "VznXdzBsOgBXzwihBhImibfvM/dNxWzw0NAboHd6Z2Y=",
+  "Source": "Fx.Authentication.Service",
+  "BasePath": "_content/Fx.Authentication.Service",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
