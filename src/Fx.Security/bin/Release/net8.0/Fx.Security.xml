@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fx.Security</name>
+    </assembly>
+    <members>
+        <member name="T:Fx.Security.Helper.KeyGenerator">
+            <summary>
+            Generates Key for Password
+            </summary>
+        </member>
+        <member name="P:Fx.Security.Helper.KeyGenerator.Bits">
+            <summary>
+            Key Size in Bits ( 1024, 2048, 4096, 8192 etc.). Default is 2048
+            </summary>
+        </member>
+        <member name="M:Fx.Security.Helper.KeyGenerator.GenerateKey(System.String@,System.String@,System.Boolean)">
+            <summary>
+            Returns Public and Private key used or RSA 
+            </summary>
+            <param name="publicKey"></param>
+            <param name="privateKey"></param>
+            <param name="isClean">true indicates the generated will not have any header.</param>
+        </member>
+        <member name="T:Fx.Security.Helper.KeyHash">
+            <summary>
+            Used to Hash the Key value
+            </summary>
+        </member>
+        <member name="M:Fx.Security.Helper.KeyHash.HashPassword(Fx.Security.Helper.Hashing,System.String)">
+            <summary>
+            Hash the password using any of the alogrithm SHA256 or MD5. 
+            </summary>
+            <param name="hashing">Default SHA256</param>
+            <param name="key">Key to Hash</param>
+            <returns>Password as Hash</returns>
+        </member>
+        <member name="T:Fx.Security.JWT.JWTDetails">
+            <summary>
+            To generate token the below property will be used as a meta data.
+            </summary>
+        </member>
+        <member name="P:Fx.Security.JWT.JWTDetails.Issuer">
+            <summary>
+            Token Issuer
+            </summary>
+        </member>
+        <member name="P:Fx.Security.JWT.JWTDetails.Audiance">
+            <summary>
+            End user <see cref="P:Fx.Security.JWT.JWTDetails.Audiance"/>
+            </summary>
+        </member>
+        <member name="P:Fx.Security.JWT.JWTDetails.Subject">
+            <summary>
+            Subject for the Generated Token
+            </summary>
+        </member>
+        <member name="P:Fx.Security.JWT.JWTDetails.Expiry">
+            <summary>
+            Expiration in date time to be used as eg. 'DateTime.UtcNow.AddHours(24)'
+            </summary>
+        </member>
+        <member name="P:Fx.Security.JWT.JWTDetails.PublicKey">
+            <summary>
+            Key used to Decrypt the token
+            </summary>
+        </member>
+        <member name="P:Fx.Security.JWT.JWTDetails.PrivateKey">
+            <summary>
+            Key used to Generate the Toke and Encrypt it.
+            </summary>
+        </member>
+        <member name="T:Fx.Security.JWT.JwtTokenHandlerRSA">
+            <summary>
+            Generates and Verifies JWT Token using RSA256
+            </summary>
+        </member>
+        <member name="M:Fx.Security.JWT.JwtTokenHandlerRSA.#ctor(System.String,System.String)">
+            <summary>
+            JWT Token Initializer
+            </summary>
+            <param name="publicKey"></param>
+            <param name="privateKey"></param>
+        </member>
+        <member name="M:Fx.Security.JWT.JwtTokenHandlerRSA.GenerateToken(Fx.Security.JWT.JWTDetails,System.Security.Claims.Claim[])">
+            <summary>
+            Generate Token based on the details provided.
+            </summary>
+            <param name="details">JWT Metadata to be assigned.</param>
+            <param name="claims">Claim details to be added in the token</param>
+            <returns>JWT Token as string</returns>
+        </member>
+    </members>
+</doc>
