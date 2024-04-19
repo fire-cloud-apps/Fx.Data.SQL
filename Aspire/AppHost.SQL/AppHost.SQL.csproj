@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiGateway\ApiGateway.csproj" />
     <ProjectReference Include="..\Fx.Authentication.Service\Fx.Authentication.Service.csproj" />
     <ProjectReference Include="..\Fx.Data.SQLAPIs\Fx.Data.SQLAPIs.csproj" />
   </ItemGroup>

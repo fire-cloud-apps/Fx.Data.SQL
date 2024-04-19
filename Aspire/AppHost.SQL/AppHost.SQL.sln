@@ -13,9 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API's", "API's", "{AE984CE3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Data.SQL", "..\..\Libray\Fx.Data.SQL\Fx.Data.SQL.csproj", "{85B989D0-6E14-4C5F-AFE9-28A8283A09F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Authentication.Service", "..\Fx.Authentication.Service\Fx.Authentication.Service.csproj", "{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Authentication.Service", "..\Fx.Authentication.Service\Fx.Authentication.Service.csproj", "{A46B3AD9-8378-4CA3-B74F-68B9E47FD620}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Security", "..\..\Libray\Fx.Security\Fx.Security.csproj", "{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "..\ApiGateway\ApiGateway.csproj", "{07C4379A-3649-41D9-BD76-8387CA18EFD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CECA51BD-B9B6-49EA-A178-C89A4653C5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C4379A-3649-41D9-BD76-8387CA18EFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C4379A-3649-41D9-BD76-8387CA18EFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C4379A-3649-41D9-BD76-8387CA18EFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C4379A-3649-41D9-BD76-8387CA18EFD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -63,6 +63,7 @@ public class UsersController : ControllerBase
             FirstName = "Ganesh",
             Company = "FSx",
             Id = 10,
+            Role =model.Username,
             LastName = "Ram",
             Password = "System@14",
             Username = "sr.ganesh"
@@ -96,6 +97,7 @@ public class UsersController : ControllerBase
                 new Claim(ClaimTypes.Email, $"{user.Username}@suntoyo.com"),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.PrimarySid, user.Id.ToString()),
+                new Claim("Role", user.Role),//In realtime this should come from the database.
                 new Claim("Company", user.Company)
         };
 

@@ -12,6 +12,10 @@ namespace Fx.Data.SQLAPIs.AttributesFilter;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class JwtAuthorizeAttribute : Attribute, IAuthorizationFilter
 {
+    public JwtAuthorizeAttribute(string role)
+    {
+
+    }
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         #region Initializor to Get Value

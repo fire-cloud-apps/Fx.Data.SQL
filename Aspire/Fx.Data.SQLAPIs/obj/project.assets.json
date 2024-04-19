@@ -2148,6 +2148,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AWSSDK.SecretsManager": "3.7.302.25",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.4",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "Microsoft.Extensions.Hosting": "8.0.0",

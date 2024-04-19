@@ -40,6 +40,8 @@ C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost.SQL.Gene
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost.SQL.AssemblyInfoInputs.cache
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost.SQL.AssemblyInfo.cs
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost.SQL.csproj.CoreCompileInputs.cache
+C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\Aspire\references\Fx_Authentication_Service.ProjectMetadata.g.cs
+C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\Aspire\references\Fx_Data_SQLAPIs.ProjectMetadata.g.cs
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\Aspire\references\_AppHost.ProjectMetadata.g.cs
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost.SQL.sourcelink.json
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost..2609BCD6.Up2Date
@@ -48,5 +50,4 @@ C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\refint\AppHost.S
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost.SQL.pdb
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\AppHost.SQL.genruntimeconfig.cache
 C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\ref\AppHost.SQL.dll
-C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\Aspire\references\Fx_Data_SQLAPIs.ProjectMetadata.g.cs
-C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\Aspire\references\Fx_Authentication_Service.ProjectMetadata.g.cs
+C:\Works\Github\Fx.Data.SQL\Aspire\AppHost.SQL\obj\Debug\net8.0\Aspire\references\ApiGateway.ProjectMetadata.g.cs

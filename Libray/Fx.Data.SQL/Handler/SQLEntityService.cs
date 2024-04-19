@@ -38,7 +38,6 @@ public partial class SQLEntityService : IEntityService
     /// <summary>
     /// Generic Insertion for SQL Server
     /// </summary>
-    /// <param name="database">Database Name eg.'DMS', 'Master'</param>
     /// <param name="entity">Table Name eg.'test', 'user'</param>
     /// <param name="jsonData">
     /// eg.{
@@ -48,7 +47,7 @@ public partial class SQLEntityService : IEntityService
     ///}
     ///</param>
     /// <returns>Record 'id' of the inserted Object.</returns>
-    public long Create(string database, string entity, Parameters jsonData)
+    public long Create(string entity, Parameters jsonData)
     {
         var parameter = Conversions.ParameterConversion(jsonData);
         //Other Errors: If the data mismatch happens during conversion, it may throw an error.
@@ -67,7 +66,7 @@ public partial class SQLEntityService : IEntityService
 
     #region Update
     ///<inheritdoc cref="IEntityService.Update(string, string, Parameters)" />
-    public dynamic? Update(string database, string entity, Parameters jsonData)
+    public dynamic? Update(string entity, Parameters jsonData)
     {
         var parameter = Conversions.ParameterConversion(jsonData);
         //Other Errors: If the data mismatch happens during conversion, it may throw an error.
@@ -88,7 +87,7 @@ public partial class SQLEntityService : IEntityService
 
     #region Update Sepecific Field    
     ///<inheritdoc cref="IEntityService.Update(string, string, IList{string}, Parameters)" />
-    public dynamic? Update(string database, string entity, IList<string> updateFields, Parameters jsonData)
+    public dynamic? Update(string entity, IList<string> updateFields, Parameters jsonData)
     {
         var parameter = Conversions.ParameterConversion(jsonData);        
         int affectedRecords;
@@ -105,7 +104,7 @@ public partial class SQLEntityService : IEntityService
     #endregion
 
     #region Delete
-    public dynamic? Delete(string database, string entity, long deleteId)
+    public dynamic? Delete(string entity, long deleteId)
     {
         #region
         //https://repodb.net/operation/delete via Anonymous Type.
@@ -122,7 +121,7 @@ public partial class SQLEntityService : IEntityService
     #endregion
 
     #region Get By Id
-    public dynamic? GetById(string database, string entity, string id)
+    public dynamic? GetById(string entity, string id)
     {
         IEnumerable<dynamic> recordSet;
         using (var connection = DbConnection)
@@ -135,7 +134,7 @@ public partial class SQLEntityService : IEntityService
     #endregion
 
     #region Get Single
-    public dynamic? GetSingle(string database, string entity, Conditions conditions)
+    public dynamic? GetSingle(string entity, Conditions conditions)
     {
         IEnumerable<dynamic> recordSet;
         using (var connection = DbConnection)
@@ -149,7 +148,7 @@ public partial class SQLEntityService : IEntityService
 
     #region Get Execute Query
     /// <returns></returns>
-    public dynamic? ExecuteQuery(string database, string entity, Conditions conditions)
+    public dynamic? ExecuteQuery(string entity, Conditions conditions)
     {
         IEnumerable<dynamic> recordSet;
         using (var connection = DbConnection)
@@ -161,7 +160,7 @@ public partial class SQLEntityService : IEntityService
     #endregion
 
     #region Get By Page with Simple Conditions
-    public dynamic? GetByPage(string database, string entity, Conditions conditions)
+    public dynamic? GetByPage(string entity, Conditions conditions)
     {
         IEnumerable<dynamic> recordSet;
         using (var connection = DbConnection)
@@ -173,7 +172,7 @@ public partial class SQLEntityService : IEntityService
             #region Order By
             var orderBy = new[]
             {
-                new OrderField("Date", Order.Descending)
+                new OrderField(conditions.Field, Order.Descending)
             };
             #endregion
 
@@ -199,11 +198,11 @@ public partial class SQLEntityService : IEntityService
     #endregion
 
     #region Get By Page with Complex Conditions - FilterParams
-    public dynamic? BatchQuery(string database, string entity, FilterParams filters)
+    public dynamic? BatchQuery(string entity, FilterParams filters)
     {
-        return GetByPage(database, entity, filters);
+        return GetByPage(entity, filters);
     }
-    public dynamic? GetByPage(string database, string entity, FilterParams filters)
+    public dynamic? GetByPage(string entity, FilterParams filters)
     {
         IEnumerable<object> recordSet;
         using (var connection = DbConnection)
@@ -243,7 +242,7 @@ public partial class SQLEntityService : IEntityService
     #endregion
 
     #region Exceptional Case - Execute Non Query    
-    public dynamic? ExecuteNonQuery(string database, string sqlQuery)
+    public dynamic? ExecuteNonQuery(string sqlQuery)
     {
         int affectedRows;
         using (var connection = DbConnection)
@@ -251,10 +250,8 @@ public partial class SQLEntityService : IEntityService
             affectedRows = connection.ExecuteNonQuery(sqlQuery);
         }
         return affectedRows;
-    }
+    }    
     #endregion
-
-    
 
 }
 

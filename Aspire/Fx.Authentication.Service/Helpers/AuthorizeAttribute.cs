@@ -19,34 +19,41 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
         #region Initializor to Get Value
         Log.Information($"Issuer: {GlobalConfig.JWTMeta.Issuer}");
-        var token = context.HttpContext.Request.Headers["Authorization"].FirstOrDefault().Split(" ")[1];
-        Log.Information($"Token: {token}");
+        string? token = context.HttpContext.Request.Headers["Authorization"].FirstOrDefault();
         
         #endregion
 
         #region Token Verifier
-
-        var jwtToken = new JwtTokenHandlerRSA(GlobalConfig.JWTMeta.PublicKey, GlobalConfig.JWTMeta.PrivateKey);
-
-        ClaimsPrincipal claims;
-        var isValid = jwtToken.VerifyToken(token: token,
-            issuer: GlobalConfig.JWTMeta.Issuer, 
-            audience: GlobalConfig.JWTMeta.Audiance, out claims);
-        if (isValid)
+        if(token is null)
         {
-            User user = new User();
-            user.FirstName = claims.FindFirst(ClaimTypes.Name).Value;
-            user.Id = int.Parse(claims.FindFirst(ClaimTypes.NameIdentifier).Value);
-            user.Username = claims.FindFirst(ClaimTypes.PrimarySid).Value;
-            Log.Information($"Verify Claim User: {JsonConvert.SerializeObject(user)}");
-            //context.Result = new JsonResult(new { message = "Authorized" }) { StatusCode = StatusCodes.Status200OK };
+            Log.Warning($"Invalid Token or No Token Available");
+            context.Result = new UnauthorizedObjectResult(new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized });
         }
         else
         {
-            Log.Warning($"Invalid Token or Token Expired.");
-            //context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
-            context.Result = new UnauthorizedObjectResult(new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized });            
+            token = token.Split(" ")[1];
+            Log.Information($"Token: {token}");
+            var jwtToken = new JwtTokenHandlerRSA(GlobalConfig.JWTMeta.PublicKey, GlobalConfig.JWTMeta.PrivateKey);
+
+            ClaimsPrincipal claims;
+            var isValid = jwtToken.VerifyToken(token: token,
+                issuer: GlobalConfig.JWTMeta.Issuer,
+                audience: GlobalConfig.JWTMeta.Audiance, out claims);
+            if (isValid)
+            {
+                User user = new User();
+                user.FirstName = claims.FindFirst(ClaimTypes.Name).Value;
+                user.Id = int.Parse(claims.FindFirst(ClaimTypes.NameIdentifier).Value);
+                user.Username = claims.FindFirst(ClaimTypes.PrimarySid).Value;
+                Log.Information($"Verify Claim User: {JsonConvert.SerializeObject(user)}");
+            }
+            else
+            {
+                Log.Warning($"Invalid Token or Token Expired.");
+                context.Result = new UnauthorizedObjectResult(new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized });
+            }
         }
+        
         #endregion
     }
 }
@@ -59,4 +66,5 @@ public class User
     public string Username { get; set; }
     public string Password { get; set; }
     public string Company { get; set; }
+    public string Role { get; set; }
 }

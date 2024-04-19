@@ -6,10 +6,11 @@
     <title>Fx Security Library</title>
     <authors>Fx.Security</authors>
     <description>Fx.Security Libray</description>
-    <repository type="git" />
+    <repository type="git" commit="b35b16570a35603b785aa93409cf8a0b34e05fdd" />
     <dependencies>
       <group targetFramework="net8.0">
         <dependency id="AWSSDK.SecretsManager" version="3.7.302.25" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Authentication.JwtBearer" version="8.0.4" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration" version="8.0.0" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="8.0.0" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Hosting" version="8.0.0" exclude="Build,Analyzers" />
@@ -20,6 +21,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Works\POC\Santoyo\File Share - External\Fx.Security\bin\Release\net8.0\Fx.Security.dll" target="lib\net8.0\Fx.Security.dll" />
+    <file src="C:\Works\Github\Fx.Data.SQL\Libray\Fx.Security\bin\Release\net8.0\Fx.Security.dll" target="lib\net8.0\Fx.Security.dll" />
   </files>
 </package>

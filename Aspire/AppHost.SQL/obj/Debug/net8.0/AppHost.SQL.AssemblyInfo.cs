@@ -23,7 +23,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AppHost.SQL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87a7c703278747f353da90c07abe44771e456f52")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b35b16570a35603b785aa93409cf8a0b34e05fdd")]
 [assembly: System.Reflection.AssemblyProductAttribute("AppHost.SQL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AppHost.SQL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

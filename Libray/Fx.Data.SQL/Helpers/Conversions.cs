@@ -101,6 +101,8 @@ public class Conversions
             objValue = boolValue;
         else if (byte.TryParse(value, out byte byteValue))
             objValue = byteValue;
+        else if(DateTime.TryParse(value, out DateTime dateTimeValue))        
+            objValue = dateTimeValue;
         else
         {
             // Use Type.GetType() for non-primitive types

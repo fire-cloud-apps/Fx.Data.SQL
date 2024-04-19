@@ -1,0 +1,130 @@
+{
+
+  "Routes": [
+    //Create API's
+    {
+      "DownstreamPathTemplate": "/mssql-api/{db}/{table}/Create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5050
+        }
+      ],
+      "AuthenticationOptions": {
+        "AllowedScopes": [],
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimespan": 60,
+        "Limit": 1
+      },
+      "UpstreamPathTemplate": "/api-gateway/ms-sql/{db}/{table}/Insert",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    //Get Table 'Test' API's
+    {
+      "DownstreamPathTemplate": "/mssql-api/{db}/{table}/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5050
+        }
+      ],
+      "AuthenticationOptions": {
+        "AllowedScopes": [],
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimespan": 60,
+        "Limit": 10 //In a givne period time, 10 request is allowed.
+      },
+      "UpstreamPathTemplate": "/api-gateway/ms-sql/{db}/{table}/Get/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "Key": "NoTest" //<- Aggregation Key
+    },
+    //Get Table 'Hard-Coded' API's
+    {
+      "DownstreamPathTemplate": "/mssql-api/dms/test/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5050
+        }
+      ],
+      "AuthenticationOptions": {
+        "AllowedScopes": [],
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimespan": 60,
+        "Limit": 10 //In a givne period time, 10 request is allowed.
+      },
+      "UpstreamPathTemplate": "/api-gateway/ms-sql/dms/test/Get/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "Key": "Test" //<- Aggregation Key
+    },
+    //Get Table 'TestDate' API's
+    {
+      "DownstreamPathTemplate": "/mssql-api/dms/testdates/get/{dtid}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5050
+        }
+      ],
+      "AuthenticationOptions": {
+        "AllowedScopes": [],
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimespan": 60,
+        "Limit": 10 //In a givne period time, 10 request is allowed.
+      },
+      "UpstreamPathTemplate": "/api-gateway/ms-sql/dms/testdates/Get/{dtid}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "Key": "TestDate" //<- Aggregation Key
+    }
+  ],
+
+  "Aggregates": [
+    {
+      "RouteKeys": [ "Test", "TestDate" ],
+      "UpstreamPathTemplate": "/api/common-test/{id}/{dtid}",
+      "Aggregator": "CommonAggregator"
+    }
+  ],
+
+
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5216"
+
+  }
+}

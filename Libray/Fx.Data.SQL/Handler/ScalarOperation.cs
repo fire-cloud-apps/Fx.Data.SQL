@@ -24,7 +24,7 @@ public partial class SQLEntityService
             #endregion
             averageValue = connection.Average (
                 tableName: table, 
-                field:  field,
+                field: field,
                 where: where,
                 trace: TraceFactory.CreateTracer()
                 );
@@ -34,7 +34,7 @@ public partial class SQLEntityService
     #endregion
 
     #region Execute Count
-    public dynamic? Count(string database, string entity, List<Filter> filter)
+    public dynamic? Count(string entity, List<Filter> filter)
     {
         long recordCount;
         using (var connection = DbConnection)
@@ -49,7 +49,7 @@ public partial class SQLEntityService
     #endregion
 
     #region Execute Exists
-    public dynamic? Exists(string database, string entity, List<Filter> filter)
+    public dynamic? Exists(string entity, List<Filter> filter)
     {
         dynamic resultSet;
         using (var connection = DbConnection)
@@ -62,4 +62,21 @@ public partial class SQLEntityService
         return resultSet;
     }
     #endregion
+
+    #region Execute Sum
+    public dynamic? Sum(string entity, string fieldToSum, List<Filter> filter)
+    {
+        dynamic resultSet;
+        using (var connection = DbConnection)
+        {
+            #region Where & Field
+            var field = Field.From(fieldToSum).First();
+            QueryGroup where = Utilities.GetQueryGroup(filter);
+            #endregion
+            resultSet = connection.Sum(entity, field, where);
+        }
+        return resultSet;
+    }
+    #endregion
+
 }

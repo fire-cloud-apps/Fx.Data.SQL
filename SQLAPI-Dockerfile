@@ -1,0 +1,26 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+#Copy full copde
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY ["Libray", "Libray/"]
+COPY ["Aspire", "Aspire/"]
+RUN dotnet restore "Aspire/Fx.Data.SQLAPIs/Fx.Data.SQLAPIs.csproj"
+COPY . .
+
+
+WORKDIR "/src/Aspire/Fx.Data.SQLAPIs"
+RUN dotnet build "Fx.Data.SQLAPIs.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "Fx.Data.SQLAPIs.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+ENTRYPOINT ["dotnet", "Fx.Data.SQLAPIs.dll"]

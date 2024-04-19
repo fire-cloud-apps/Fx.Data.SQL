@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Fx.Security Libray")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b35b16570a35603b785aa93409cf8a0b34e05fdd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fx.Security")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fx.Security")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
