@@ -18,6 +18,7 @@ jobs:
   
     env:
       Solution_Name: src/Fx.Data.SQL.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
+      
 
 
 # Here comes the execution steps
@@ -31,7 +32,10 @@ jobs:
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 8.0.x      
+        source-url: https://nuget.pkg.github.com/<organization>/index.json
+      env:
+          NUGET_AUTH_TOKEN: oy2byesmvbhxobkl6quqhjdpyovsndyujeqxt2g6aonq6q    
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
@@ -52,9 +56,18 @@ jobs:
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
 
+    - name: Build solution and generate NuGet package
+      run: |  
+        cd src
+        dotnet pack -c Release -o out  
+        
+    - name: Push generated package to Nuget
+      run: dotnet nuget push ./src/out/*.nupkg --skip-duplicate --no-symbols true
+
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages
+    
