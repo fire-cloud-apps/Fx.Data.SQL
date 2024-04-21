@@ -18,7 +18,8 @@ jobs:
   
     env:
       Solution_Name: src/Fx.Data.SQL.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
-      
+      Project_Name: src\Fx.Data.SQL\Fx.Data.SQL.csproj
+       
 
 
 # Here comes the execution steps
@@ -48,9 +49,7 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     - name: Build solution and generate NuGet package
-      run: |  
-        cd src
-        dotnet pack -c Release -o out  
+      run: dotnet pack -c Release $env:Project_Name -o out  
         
     - name: Push generated package to Nuget
       run: dotnet nuget push ./src/out/*.nupkg --skip-duplicate --no-symbols true
