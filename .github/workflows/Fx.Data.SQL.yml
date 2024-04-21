@@ -1,5 +1,5 @@
 
-name: .NET Core Desktop
+name: SQL Data Library Nuget Package Actions
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     runs-on: windows-latest
   
     env:
-      Solution_Name: /src/Fx.Data.SQL.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: src/Fx.Data.SQL.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
 
 
 # Here comes the execution steps
