@@ -12,12 +12,12 @@ jobs:
   
     strategy:
         matrix:
-          configuration: [Debug, Release]
+          configuration: [Release]
   
     runs-on: windows-latest
   
     env:
-      Solution_Name: Fx.Data.SQL.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: /src/Fx.Data.SQL.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
 
 
 # Here comes the execution steps
