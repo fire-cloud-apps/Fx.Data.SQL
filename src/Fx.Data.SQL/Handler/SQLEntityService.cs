@@ -25,16 +25,28 @@ public partial class SQLEntityService : IEntityService
     #endregion
 
     #region Contructor    
+    /// <summary>
+    /// SQL Entity Service which initializes the SQLServer, MySQL, SQLite, PostgreSQL
+    /// </summary>
+    /// <param name="dbConnection">DB Connectivity</param>
+    /// <param name="logger">Logger</param>
     public SQLEntityService(IDbConnection dbConnection, ILogger logger)
     {
         Logger = logger;
         DbConnection = dbConnection;
         GlobalConfiguration.Setup().UseSqlServer();
         GlobalConfiguration.Setup().UseSqlite();
+        GlobalConfiguration.Setup().UseMySql();
+        GlobalConfiguration.Setup().UsePostgreSql();
     }
     #endregion
 
     #region Exceptional Case - Execute Non Query    
+    /// <summary>
+    /// Executes any query
+    /// </summary>
+    /// <param name="sqlQuery">execute any query</param>
+    /// <returns>retruns the resulted from the query</returns>
     public dynamic? ExecuteNonQuery(string sqlQuery)
     {
         int affectedRows;
@@ -45,8 +57,4 @@ public partial class SQLEntityService : IEntityService
         return affectedRows;
     }    
     #endregion
-
 }
-
-
-

@@ -102,5 +102,22 @@ public partial class SQLEntityService
     #endregion
 
     #endregion
+
+    #region Truncate
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <param name="table"><inheritdoc/></param>
+    /// <returns><inheritdoc/></returns>
+    public dynamic? Truncate(string table)
+    {
+        int truncatedRows;
+        using (var connection = DbConnection)
+        {
+            truncatedRows = connection.Truncate(table);
+        }
+        return truncatedRows;
+    }
+    #endregion
 }
 

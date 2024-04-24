@@ -37,3 +37,5 @@ C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\obj\Debug\net8.0\Fx.Data.SQL.dll
 C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\obj\Debug\net8.0\refint\Fx.Data.SQL.dll
 C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\obj\Debug\net8.0\Fx.Data.SQL.pdb
 C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\obj\Debug\net8.0\ref\Fx.Data.SQL.dll
+C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\bin\Debug\net8.0\Fx.Data.SQL.xml
+C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\obj\Debug\net8.0\Fx.Data.SQL.xml

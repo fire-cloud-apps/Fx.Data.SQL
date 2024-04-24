@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 namespace Fx.Data.SQL.Helpers;
 
 
+/// <summary>
+/// Filter Params
+/// </summary>
 public class FilterParams
 {
+    /// <summary>
+    /// Fields to return or columns where operations to be conducted.
+    /// </summary>
     public List<string> Fields { get; set; }
     public List<Sort> Sort { get; set; }
     public List<Filter> Filter { get; set; }
@@ -18,26 +24,47 @@ public class FilterParams
     public int RowsPerBatch { get; set; } = 10;
 }
 
-
-// Root myDeserializedClass = JsonConvert.DeserializeObject<FilterParams>(myJsonResponse);
+/// <summary>
+/// "AND" Condition
+/// </summary>
 public class And : InputFields
 {
     
 }
+/// <summary>
+/// "OR" condition
+/// </summary>
 public class Or : InputFields
 {
 }
+/// <summary>
+/// Filter object with 'And' / 'Or'.
+/// </summary>
 public class Filter
 {
+    /// <summary>
+    /// 'And' Condition as a List
+    /// </summary>
     public List<And> And { get; set; }
+    /// <summary>
+    /// 'OR' Condition as a list
+    /// </summary>
     public List<Or> Or { get; set; }
 }
 
 
-
+/// <summary>
+/// Sort conditions
+/// </summary>
 public class Sort
 {
+    /// <summary>
+    /// Sorting Field
+    /// </summary>
     public string Field { get; set; }
+    /// <summary>
+    /// Order By 'Descending' or 'Ascending'
+    /// </summary>
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public Order OrderBy { get; set; }
 }

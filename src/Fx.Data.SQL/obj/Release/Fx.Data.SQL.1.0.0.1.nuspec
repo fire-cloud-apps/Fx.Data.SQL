@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Fx.Data.SQL</id>
-    <version>1.0.0</version>
+    <version>1.0.0.1</version>
     <authors>Fx.Data.SQL</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <license type="expression">MIT</license>
@@ -21,8 +21,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\bin\Debug\net8.0\Fx.Data.SQL.dll" target="lib\net8.0\Fx.Data.SQL.dll" />
-    <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\bin\Debug\net8.0\Fx.Data.SQL.xml" target="lib\net8.0\Fx.Data.SQL.xml" />
+    <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\bin\Release\net8.0\Fx.Data.SQL.dll" target="lib\net8.0\Fx.Data.SQL.dll" />
+    <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\bin\Release\net8.0\Fx.Data.SQL.xml" target="lib\net8.0\Fx.Data.SQL.xml" />
     <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\Readme.md" target="\Readme.md" />
   </files>
 </package>

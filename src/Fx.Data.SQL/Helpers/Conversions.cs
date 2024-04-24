@@ -6,8 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Fx.Data.SQL.Helpers;
+
+/// <summary>
+/// Very much to convert all kind of data type from C# to RDBMS
+/// </summary>
 public class Conversions
 {
+    /// <summary>
+    /// Used to convert the parameter value to the right data type.
+    /// </summary>
+    /// <param name="parameter">Dictionary object</param>
+    /// <returns>returns the target data type.</returns>
     public static Dictionary<string, object> ParameterConversion(Dictionary<string, string> parameter)
     {
         var target = new Dictionary<string, object>();
@@ -20,13 +29,22 @@ public class Conversions
         return target;
     }
 
+    /// <summary>
+    /// Converts the dictionary Object as 'JSON' Data.
+    /// </summary>
+    /// <param name="dict">Dictionary Object</param>
+    /// <returns>returns a JSON String</returns>
     public static string DictionaryToJson(Dictionary<string, string> dict)
     {
         var entries = dict.Select(d =>
             string.Format("\"{0}\": \"{1}\"", d.Key, string.Join(",", d.Value)));
         return "{" + string.Join(",", entries) + "}";
     }
-
+    /// <summary>
+    /// Get the Operation condition to be used which is equivalent to RepoDb 'Operation'.
+    /// </summary>
+    /// <param name="condition">the condition string as 'gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations''.</param>
+    /// <returns></returns>
     public static Operation GetOperation(string condition)
     {
         Operation operation = Operation.Equal;

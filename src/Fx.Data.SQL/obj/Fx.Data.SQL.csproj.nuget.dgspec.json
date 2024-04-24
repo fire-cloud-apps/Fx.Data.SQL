@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Works\\Github\\Fx.Data.SQL\\src\\Fx.Data.SQL\\Fx.Data.SQL.csproj": {
-      "version": "1.0.0",
+      "version": "1.0.0.1",
       "restore": {
         "projectUniqueName": "C:\\Works\\Github\\Fx.Data.SQL\\src\\Fx.Data.SQL\\Fx.Data.SQL.csproj",
         "projectName": "Fx.Data.SQL",
@@ -57,6 +57,18 @@
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[8.0.1, )"
+            },
+            "RepoDb.MySql": {
+              "target": "Package",
+              "version": "[1.13.1, )"
+            },
+            "RepoDb.PostgreSql": {
+              "target": "Package",
+              "version": "[1.13.1, )"
+            },
+            "RepoDb.PostgreSql.BulkOperations": {
+              "target": "Package",
+              "version": "[1.13.1, )"
             },
             "RepoDb.SqlServer": {
               "target": "Package",

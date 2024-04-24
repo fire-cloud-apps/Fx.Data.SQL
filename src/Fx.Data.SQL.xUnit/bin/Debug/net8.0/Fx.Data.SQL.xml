@@ -4,31 +4,6 @@
         <name>Fx.Data.SQL</name>
     </assembly>
     <members>
-        <member name="T:Fx.Data.SQL.ConditionConstant">
-            <summary>
-            Conditional Constants
-            </summary>
-        </member>
-        <member name="F:Fx.Data.SQL.ConditionConstant.GreaterThen">
-            <summary>
-            Used for the condition Greater Then
-            </summary>
-        </member>
-        <member name="F:Fx.Data.SQL.ConditionConstant.GreaterThenEqual">
-            <summary>
-            Used for the condition Greater Then Equal
-            </summary>
-        </member>
-        <member name="F:Fx.Data.SQL.ConditionConstant.LesserThen">
-            <summary>
-            Used for the condition Lesser Then
-            </summary>
-        </member>
-        <member name="F:Fx.Data.SQL.ConditionConstant.LesserThenEqual">
-            <summary>
-            Used for the condition Lesser Then Equal
-            </summary>
-        </member>
         <member name="T:Fx.Data.SQL.Handler.SQLEntityService">
             <summary>
             SQL Server Entity Service to handle CRUD Operations
@@ -72,14 +47,6 @@
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.ExecuteQuery(System.String,Fx.Data.SQL.Helpers.Conditions)">
             <returns></returns>
         </member>
-        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Count(System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
-            <summary>
-            <inheritdoc/>
-            </summary>
-            <param name="table"><inheritdoc/> </param>
-            <param name="filter"> <inheritdoc/> </param>
-            <returns> <inheritdoc/> </returns>
-        </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Sum(System.String,System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
             <summary>
             <inheritdoc/>
@@ -107,51 +74,20 @@
             <param name="filter"> <inheritdoc/> </param>
             <returns> <inheritdoc/> </returns>
         </member>
-        <member name="T:Fx.Data.SQL.Helpers.Conditions">
-            <summary>
-            Conditions query.
-            </summary>
-        </member>
         <member name="P:Fx.Data.SQL.Helpers.Conditions.Condition">
             <summary>
             gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
             </summary>
         </member>
-        <member name="P:Fx.Data.SQL.Helpers.Conditions.Page">
+        <member name="T:Fx.Data.SQL.Helpers.QueryFilter">
             <summary>
-            Set the on the condition, form which page we need to read. Page stats from 0, Default value is '0'.
+            Which is an alternative of QueryField
             </summary>
         </member>
-        <member name="P:Fx.Data.SQL.Helpers.Conditions.RowsPerBatch">
+        <member name="P:Fx.Data.SQL.Helpers.QueryFilter.DataType">
             <summary>
-            No of records to be retrieved from the database.
+            Optional lets have this, if required we can use it for some datatype.
             </summary>
-        </member>
-        <member name="T:Fx.Data.SQL.Helpers.Conversions">
-            <summary>
-            Very much to convert all kind of data type from C# to RDBMS
-            </summary>
-        </member>
-        <member name="M:Fx.Data.SQL.Helpers.Conversions.ParameterConversion(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Used to convert the parameter value to the right data type.
-            </summary>
-            <param name="parameter">Dictionary object</param>
-            <returns>returns the target data type.</returns>
-        </member>
-        <member name="M:Fx.Data.SQL.Helpers.Conversions.DictionaryToJson(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Converts the dictionary Object as 'JSON' Data.
-            </summary>
-            <param name="dict">Dictionary Object</param>
-            <returns>returns a JSON String</returns>
-        </member>
-        <member name="M:Fx.Data.SQL.Helpers.Conversions.GetOperation(System.String)">
-            <summary>
-            Get the Operation condition to be used which is equivalent to RepoDb 'Operation'.
-            </summary>
-            <param name="condition">the condition string as 'gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations''.</param>
-            <returns></returns>
         </member>
         <member name="M:Fx.Data.SQL.Helpers.Conversions.GetType(System.String)">
             <summary>
@@ -163,17 +99,6 @@
             </summary>
             <param name="value">actual value to be converted</param>
             <returns>converted value return with right data type.</returns>  
-        </member>
-        <member name="T:Fx.Data.SQL.Helpers.TraceFactory">
-            <summary>
-            Trance Factory used to capture the executed query.
-            </summary>
-        </member>
-        <member name="M:Fx.Data.SQL.Helpers.TraceFactory.CreateTracer">
-            <summary>
-            Enables the Traces using the below method.
-            </summary>
-            <returns>returns trace information</returns>
         </member>
         <member name="P:Fx.Data.SQL.Helpers.ResponseModel.Success">
             <summary>

@@ -72,14 +72,6 @@
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.ExecuteQuery(System.String,Fx.Data.SQL.Helpers.Conditions)">
             <returns></returns>
         </member>
-        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Count(System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
-            <summary>
-            <inheritdoc/>
-            </summary>
-            <param name="table"><inheritdoc/> </param>
-            <param name="filter"> <inheritdoc/> </param>
-            <returns> <inheritdoc/> </returns>
-        </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Sum(System.String,System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
             <summary>
             <inheritdoc/>

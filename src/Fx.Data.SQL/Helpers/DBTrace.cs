@@ -32,12 +32,18 @@ public class DBTrace : ITrace
         return null;
     }
 }
-
+/// <summary>
+/// Trance Factory used to capture the executed query.
+/// </summary>
 public static class TraceFactory
 {
     private static object _syncLock = new object();
     private static ITrace _trace = null;
 
+    /// <summary>
+    /// Enables the Traces using the below method.
+    /// </summary>
+    /// <returns>returns trace information</returns>
     public static ITrace CreateTracer()
     {
         if (_trace == null)

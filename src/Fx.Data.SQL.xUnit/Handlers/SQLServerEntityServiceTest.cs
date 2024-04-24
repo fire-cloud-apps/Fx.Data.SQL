@@ -18,7 +18,7 @@ public partial class SQLEntityServiceTest
     IEntityService _entityService;
     string _connectionString;
     string _dbName = "Northwind";
-    string _tblName = "test";
+    string _tblName = "Orders";
 
     #region Global Contructor
     public SQLEntityServiceTest(ITestOutputHelper output)

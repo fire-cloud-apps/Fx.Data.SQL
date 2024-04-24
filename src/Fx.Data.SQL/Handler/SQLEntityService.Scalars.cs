@@ -34,7 +34,13 @@ public partial class SQLEntityService
     #endregion
 
     #region Execute Count
-    public dynamic? Count(string entity, List<Filter> filter)
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <param name="table"><inheritdoc/> </param>
+    /// <param name="filter"> <inheritdoc/> </param>
+    /// <returns> <inheritdoc/> </returns>
+    public dynamic? Count(string table, List<Filter> filter)
     {
         long recordCount;
         using (var connection = DbConnection)
@@ -42,7 +48,7 @@ public partial class SQLEntityService
             #region Where 
             QueryGroup where = Utilities.GetQueryGroup(filter);
             #endregion
-            recordCount = connection.Count(entity, where: where, trace: TraceFactory.CreateTracer());
+            recordCount = connection.Count(table, where: where, trace: TraceFactory.CreateTracer());
         }
         return recordCount;
     }
@@ -64,6 +70,13 @@ public partial class SQLEntityService
     #endregion
 
     #region Execute Sum
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <param name="entity"><inheritdoc/> </param>
+    /// <param name="fieldToSum"><inheritdoc/> </param>
+    /// <param name="filter"><inheritdoc/></param>
+    /// <returns><inheritdoc/></returns>
     public dynamic? Sum(string entity, string fieldToSum, List<Filter> filter)
     {
         dynamic resultSet;
@@ -78,5 +91,53 @@ public partial class SQLEntityService
         return resultSet;
     }
     #endregion
+
+    #region Execute Max
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <param name="entity"><inheritdoc/> </param>
+    /// <param name="fieldToSum"><inheritdoc/> </param>
+    /// <param name="filter"><inheritdoc/></param>
+    /// <returns><inheritdoc/></returns>
+    public dynamic? Max(string entity, string fieldToSum, List<Filter> filter)
+    {
+        dynamic resultSet;
+        using (var connection = DbConnection)
+        {
+            #region Where & Field
+            var field = Field.From(fieldToSum).First();
+            QueryGroup where = Utilities.GetQueryGroup(filter);
+            #endregion
+            resultSet = connection.Max(entity, field, where);
+        }
+        return resultSet;
+    }
+    #endregion
+
+    #region Execute Min
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <param name="entity"><inheritdoc/> </param>
+    /// <param name="fieldToSum"><inheritdoc/> </param>
+    /// <param name="filter"> <inheritdoc/> </param>
+    /// <returns> <inheritdoc/> </returns>
+    public dynamic? Min(string entity, string fieldToSum, List<Filter> filter)
+    {
+        dynamic resultSet;
+        using (var connection = DbConnection)
+        {
+            #region Where & Field
+            var field = Field.From(fieldToSum).First();
+            QueryGroup where = Utilities.GetQueryGroup(filter);
+            #endregion
+            resultSet = connection.Min(entity, field, where);
+        }
+        return resultSet;
+    }
+    #endregion
+
+    
 
 }
