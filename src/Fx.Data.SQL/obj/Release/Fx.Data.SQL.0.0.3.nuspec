@@ -2,13 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Fx.Data.SQL</id>
-    <version>1.0.0.1</version>
-    <authors>Fx.Data.SQL</authors>
+    <version>0.0.3</version>
+    <authors>SRG</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
     <readme>Readme.md</readme>
     <description>Package Description</description>
+    <copyright>Firecloud Service @2024</copyright>
     <repository type="git" commit="6c97de953d6dcce5484cf9f77f1456c7c4bce23a" />
     <dependencies>
       <group targetFramework="net8.0">

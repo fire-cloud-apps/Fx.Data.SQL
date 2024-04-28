@@ -34,6 +34,20 @@
             SQL Server Entity Service to handle CRUD Operations
             </summary>
         </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.#ctor(System.Data.IDbConnection,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            SQL Entity Service which initializes the SQLServer, MySQL, SQLite, PostgreSQL
+            </summary>
+            <param name="dbConnection">DB Connectivity</param>
+            <param name="logger">Logger</param>
+        </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes any query
+            </summary>
+            <param name="sqlQuery">execute any query</param>
+            <returns>returns the resulted from the query</returns>
+        </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Create(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
              <summary>
              Generic Insertion for SQL Server
@@ -72,6 +86,14 @@
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.ExecuteQuery(System.String,Fx.Data.SQL.Helpers.Conditions)">
             <returns></returns>
         </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Count(System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="table"><inheritdoc/> </param>
+            <param name="filter"> <inheritdoc/> </param>
+            <returns> <inheritdoc/> </returns>
+        </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Sum(System.String,System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
             <summary>
             <inheritdoc/>
@@ -102,11 +124,6 @@
         <member name="T:Fx.Data.SQL.Helpers.Conditions">
             <summary>
             Conditions query.
-            </summary>
-        </member>
-        <member name="P:Fx.Data.SQL.Helpers.Conditions.Condition">
-            <summary>
-            gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
             </summary>
         </member>
         <member name="P:Fx.Data.SQL.Helpers.Conditions.Page">
@@ -156,6 +173,24 @@
             <param name="value">actual value to be converted</param>
             <returns>converted value return with right data type.</returns>  
         </member>
+        <member name="T:Fx.Data.SQL.Helpers.CustomDataType">
+            <summary>
+            For more complex datatypes, we should use this method to identify a target data type form the sender.
+            </summary>
+            <remarks>
+            https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
+            </remarks>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.CustomDataType.Type">
+            <summary>
+            Target Data Type as string. Eg. 'byte[]', Guid, Char[], XML or even string etc.
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.CustomDataType.Value">
+            <summary>
+            Data valye as string.
+            </summary>
+        </member>
         <member name="T:Fx.Data.SQL.Helpers.TraceFactory">
             <summary>
             Trance Factory used to capture the executed query.
@@ -166,6 +201,61 @@
             Enables the Traces using the below method.
             </summary>
             <returns>returns trace information</returns>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.FilterParams">
+            <summary>
+            Filter Params
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.FilterParams.Fields">
+            <summary>
+            Fields to return or columns where operations to be conducted.
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.And">
+            <summary>
+            "AND" Condition
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Or">
+            <summary>
+            "OR" condition
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Filter">
+            <summary>
+            Filter object with 'And' / 'Or'.
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Filter.And">
+            <summary>
+            'And' Condition as a List
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Filter.Or">
+            <summary>
+            'OR' Condition as a list
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Sort">
+            <summary>
+            Sort conditions
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Sort.Field">
+            <summary>
+            Sorting Field
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Sort.OrderBy">
+            <summary>
+            Order By 'Descending' or 'Ascending'
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.InputFields.Condition">
+            <summary>
+            gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
+            </summary>
         </member>
         <member name="P:Fx.Data.SQL.Helpers.ResponseModel.Success">
             <summary>

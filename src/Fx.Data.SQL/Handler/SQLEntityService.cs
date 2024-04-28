@@ -46,7 +46,7 @@ public partial class SQLEntityService : IEntityService
     /// Executes any query
     /// </summary>
     /// <param name="sqlQuery">execute any query</param>
-    /// <returns>retruns the resulted from the query</returns>
+    /// <returns>returns the resulted from the query</returns>
     public dynamic? ExecuteNonQuery(string sqlQuery)
     {
         int affectedRows;

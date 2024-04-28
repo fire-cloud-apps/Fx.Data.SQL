@@ -1,8 +1,12 @@
-﻿using RepoDb.Enumerations;
+﻿using MySqlX.XDevAPI.Common;
+using RepoDb.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Fx.Data.SQL.Helpers;
@@ -20,12 +24,13 @@ public class Conversions
     public static Dictionary<string, object> ParameterConversion(Dictionary<string, string> parameter)
     {
         var target = new Dictionary<string, object>();
-
         foreach (var item in parameter)
         {
             //Console.WriteLine($"Key: {item.Key} Value:{item.Value} Type: {item.GetType().Name}");
-            target.Add(item.Key, GetType(item.Value));
+            object targetType = GetType(item.Value);
+            target.Add(item.Key, targetType);
         }
+        
         return target;
     }
 
@@ -105,83 +110,110 @@ public class Conversions
     /// <returns>converted value return with right data type.</returns>  
     public static object GetType(string value)
     {
+        var ci = new CultureInfo("en-US");
+        var formats = new[] { "M-d-yyyy", "dd-MM-yyyy", "MM-dd-yyyy", "M.d.yyyy", "dd.MM.yyyy", "MM.dd.yyyy" };
         object objValue = value;
+        string? strValue = objValue.ToString();
 
-        if (int.TryParse(value, out int intValue))
-            objValue = intValue;
-        else if (float.TryParse(value, out float floatValue))
-            objValue = floatValue;
-        else if (long.TryParse(value, out long longValue))
-            objValue = longValue;
-        else if (decimal.TryParse(value, out decimal decimalValue))
-            objValue = decimalValue;
-        else if (bool.TryParse(value, out bool boolValue))
-            objValue = boolValue;
-        else if (byte.TryParse(value, out byte byteValue))
-            objValue = byteValue;
-        else if(DateTime.TryParse(value, out DateTime dateTimeValue))        
-            objValue = dateTimeValue;
+        if(regexPattern.Count <= 0)
+        {
+            InvokePattern();
+        }
+        
+        if (strValue is not null)
+        {
+            foreach(var regex in regexPattern)
+            {
+                if (Regex.IsMatch(value, regex.Value))
+                {
+                    switch (regex.Key)
+                    {
+                        case "int":
+                            int intValue = int.Parse(strValue);
+                            objValue = intValue;
+                            break;
+                        case "float":
+                            float floatValue = float.Parse(strValue);
+                            objValue = floatValue;
+                            break;
+                        case "decimal":
+                            decimal decValue = decimal.Parse(strValue);
+                            objValue = decValue;
+                            break;
+                        case "bool":
+                            bool bValue = bool.Parse(strValue);
+                            objValue = bValue;
+                            break;
+                        case "date":
+                        case "dateTime":
+                            DateTime dtValue = DateTime.ParseExact(value, formats, ci, DateTimeStyles.AssumeLocal);
+                            objValue = dtValue;
+                            break;
+                        case "json":
+                            objValue = GetCustomDataType(value);
+                            break;
+                        case "base65":
+                            byte[] btValue = Encoding.ASCII.GetBytes(strValue);
+                            objValue = btValue;
+                            break;
+                        default:
+                            objValue = value as string;
+                            break;
+                    }
+                    Console.WriteLine($"DataType Match for the value '{value}' is '{regex.Key}'");
+                    break;
+                }
+            }
+        }
+        return objValue;
+    }
+
+    private static object GetCustomDataType(string value)
+    {
+        object objValue;
+        CustomDataType? customData = JsonSerializer.Deserialize<CustomDataType>(value);
+        if (customData is not null)
+        {
+            switch (customData.Type)
+            {
+                case "byte[]":
+                    byte[] btVal = Encoding.ASCII.GetBytes(customData.Value);
+                    objValue = btVal;
+                    break;
+                case "guid":
+                    Guid guid = new Guid(value);
+                    objValue = guid;
+                    break;
+                case "xml":
+                default:
+                    objValue = value; break;
+            }
+        }
         else
         {
-            // Use Type.GetType() for non-primitive types
-            Type customType = Type.GetType(value);
-            if (customType != null)
-                objValue = Activator.CreateInstance(customType);
+            objValue = value;
         }
 
         return objValue;
     }
 
-    /*
-     public static object GetType(string value)
-    {
-        object objValue = value;
-        do
-        {
-            if (int.TryParse(value, out int intValue))
-            {
-                objValue = intValue;
-                break;
-            }
-            if (float.TryParse(value, out float floatValue))
-            {
-                objValue = floatValue;
-                break;
-            }
-            if (long.TryParse(value, out long longValue))
-            {
-                objValue = longValue;
-                break;
-            }
-            if (decimal.TryParse(value, out decimal decimalValue))
-            {
-                objValue = decimalValue;
-                break;
-            }
-            else if (DateTime.TryParse(value, out DateTime dtValue))
-            {
-                objValue = dtValue;
-                break;
-            }
-            else if (bool.TryParse(value, out bool boValue))
-            {
-                objValue = boValue;
-                break;
-            }
-            else if (byte.TryParse(value, out byte byteValue))
-            {
-                objValue = byteValue;
-                break;
-            }
-            else
-            {
-                objValue = value;
-                break;
-            }
-        } while (false);
-        return objValue;
-        
-    }
-     */
+    static Dictionary<string, string> regexPattern = new Dictionary<string, string>();
 
+    static string regexDateTime = @"^(3[01]|[12][0-9]|0?[1-9])(\/|-|.)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2} \d{2}:\d{2}:\d{2}$";
+    static string regexDate = @"^(3[01]|[12][0-9]|0?[1-9])(\/|-|.)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$";
+
+    static void InvokePattern()
+    {
+        regexPattern.Clear();
+        regexPattern.Add("int", @"^\d+$");
+        regexPattern.Add("float", @"^\d+(\.\d+)?$");
+        regexPattern.Add("decimal", @"^\d+\.\d+$");
+        regexPattern.Add("date", regexDate);
+        regexPattern.Add("dateTime", regexDateTime);
+        regexPattern.Add("bool", @"^(true|false)$");
+        regexPattern.Add("json", @"^(?:\{.*\}|\[.*\])$");
+        regexPattern.Add("base65", @"\bbase64\b");//Checks if the string contains base64 string value if yes, converts it as byte[].
+
+    }
+   
 }

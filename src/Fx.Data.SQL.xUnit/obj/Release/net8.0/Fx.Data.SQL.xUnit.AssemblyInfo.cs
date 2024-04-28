@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fx.Data.SQL.xUnit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7eb871350c3ac920775bd6fd8b6ffcaf930d94fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c97de953d6dcce5484cf9f77f1456c7c4bce23a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fx.Data.SQL.xUnit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fx.Data.SQL.xUnit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

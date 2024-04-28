@@ -5049,7 +5049,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0.1",
+    "version": "0.0.3",
     "restore": {
       "projectUniqueName": "C:\\Works\\Github\\Fx.Data.SQL\\src\\Fx.Data.SQL\\Fx.Data.SQL.csproj",
       "projectName": "Fx.Data.SQL",

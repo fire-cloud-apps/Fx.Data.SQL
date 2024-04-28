@@ -34,6 +34,20 @@
             SQL Server Entity Service to handle CRUD Operations
             </summary>
         </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.#ctor(System.Data.IDbConnection,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            SQL Entity Service which initializes the SQLServer, MySQL, SQLite, PostgreSQL
+            </summary>
+            <param name="dbConnection">DB Connectivity</param>
+            <param name="logger">Logger</param>
+        </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes any query
+            </summary>
+            <param name="sqlQuery">execute any query</param>
+            <returns>retruns the resulted from the query</returns>
+        </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Create(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
              <summary>
              Generic Insertion for SQL Server
@@ -112,11 +126,6 @@
             Conditions query.
             </summary>
         </member>
-        <member name="P:Fx.Data.SQL.Helpers.Conditions.Condition">
-            <summary>
-            gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
-            </summary>
-        </member>
         <member name="P:Fx.Data.SQL.Helpers.Conditions.Page">
             <summary>
             Set the on the condition, form which page we need to read. Page stats from 0, Default value is '0'.
@@ -174,6 +183,61 @@
             Enables the Traces using the below method.
             </summary>
             <returns>returns trace information</returns>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.FilterParams">
+            <summary>
+            Filter Params
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.FilterParams.Fields">
+            <summary>
+            Fields to return or columns where operations to be conducted.
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.And">
+            <summary>
+            "AND" Condition
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Or">
+            <summary>
+            "OR" condition
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Filter">
+            <summary>
+            Filter object with 'And' / 'Or'.
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Filter.And">
+            <summary>
+            'And' Condition as a List
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Filter.Or">
+            <summary>
+            'OR' Condition as a list
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Sort">
+            <summary>
+            Sort conditions
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Sort.Field">
+            <summary>
+            Sorting Field
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Sort.OrderBy">
+            <summary>
+            Order By 'Descending' or 'Ascending'
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.InputFields.Condition">
+            <summary>
+            gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
+            </summary>
         </member>
         <member name="P:Fx.Data.SQL.Helpers.ResponseModel.Success">
             <summary>

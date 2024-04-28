@@ -1,10 +1,7 @@
 ﻿using Fx.Data.SQL.Helpers;
 using RepoDb;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Parameters = System.Collections.Generic.Dictionary<string, string>;
 
 
@@ -12,7 +9,6 @@ namespace Fx.Data.SQL.Handler;
 
 public partial class SQLEntityService
 {
-
     #region DML Methods
 
     #region Create

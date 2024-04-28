@@ -23,5 +23,9 @@ public class InputFields
             _value = value;
         }
     }
-    public string Condition { get; set; }
+    
+    /// <summary>
+     /// gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
+     /// </summary>
+    public string Condition { get; set; } = "eq";
 }

@@ -3211,7 +3211,7 @@
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "Fx.Data.SQL/1.0.0.1": {
+      "Fx.Data.SQL/0.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -9443,7 +9443,7 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "Fx.Data.SQL/1.0.0.1": {
+    "Fx.Data.SQL/0.0.3": {
       "type": "project",
       "path": "../Fx.Data.SQL/Fx.Data.SQL.csproj",
       "msbuildProject": "../Fx.Data.SQL/Fx.Data.SQL.csproj"
@@ -9451,7 +9451,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Fx.Data.SQL >= 1.0.0.1",
+      "Fx.Data.SQL >= 0.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.4",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
       "Shouldly >= 4.2.1",

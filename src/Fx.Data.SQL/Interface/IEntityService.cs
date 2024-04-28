@@ -104,7 +104,7 @@ public interface IEntityService
     dynamic? Truncate(string table);
     #endregion
 
-    #region RepoDB Operations
+    #region Operations
     /// <summary>
     /// Used to compute the average value of the target field.
     /// </summary>
