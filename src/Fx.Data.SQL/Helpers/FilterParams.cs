@@ -42,14 +42,23 @@ public class Or : InputFields
 /// </summary>
 public class Filter
 {
+    #region New Query Group
+    public IList<InputFields> ConditionFields { get; set; }
+
+    public string Conjunctions { get; set; } = "And";
+
+    #endregion
+
+    #region Old Query Group
     /// <summary>
     /// 'And' Condition as a List
     /// </summary>
-    public List<And> And { get; set; }
+    //public List<And> And { get; set; }
     /// <summary>
     /// 'OR' Condition as a list
     /// </summary>
-    public List<Or> Or { get; set; }
+    //public List<Or> Or { get; set; }
+    #endregion
 }
 
 

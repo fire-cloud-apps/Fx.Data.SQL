@@ -1,7 +1,10 @@
 ﻿using MySqlX.XDevAPI.Common;
+using RepoDb;
 using RepoDb.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -79,7 +82,7 @@ public class Conversions
                 operation = Operation.Between;
                 break;
             case "nbt":
-                operation = Operation.NotLike;
+                operation = Operation.NotBetween;
                 break;
             case "in":
                 operation = Operation.In;
@@ -98,7 +101,7 @@ public class Conversions
         return operation;
     }
 
-    //TODO: Need to extend this method for all Data Types.
+    /// TODO: Need to extend this method for all Data Types.
     /// <summary>
     /// Converts to various Types.
     /// Currently Supported types: int,float,long, boolean, datetime.
@@ -111,7 +114,7 @@ public class Conversions
     public static object GetType(string value)
     {
         var ci = new CultureInfo("en-US");
-        var formats = new[] { "M-d-yyyy", "dd-MM-yyyy", "MM-dd-yyyy", "M.d.yyyy", "dd.MM.yyyy", "MM.dd.yyyy" };
+        var formats = new[] { "yyyy-dd-MM HH:mm:ss", "dd-MM-yyyy HH:mm:ss", "M-d-yyyy", "dd-MM-yyyy", "MM-dd-yyyy", "M.d.yyyy", "dd.MM.yyyy", "MM.dd.yyyy" };
         object objValue = value;
         string? strValue = objValue.ToString();
 
@@ -215,5 +218,111 @@ public class Conversions
         regexPattern.Add("base65", @"\bbase64\b");//Checks if the string contains base64 string value if yes, converts it as byte[].
 
     }
-   
+
+    //In future we can try to implement the below code to identify data type
+    /*
+     *  DataTable? dataTable;
+        using (var reader = connection.ExecuteReader($"Select * from {entity};", CommandBehavior.SchemaOnly))
+        {
+            dataTable = reader.GetSchemaTable();
+        }
+        foreach(DataRow row in dataTable.Rows)
+        {
+            var name = row["ColumnName"];
+            var size = row["ColumnSize"];
+            var dataType = row["DataTypeName"];
+            Console.WriteLine("ColumnName={0}", row.Field<string>("ColumnName"));
+        }
+     */
+
+    public static Dictionary<string, dynamic> DataTypeConversion(Dictionary<string, string> parameter, IDbConnection dbConnection, string table)
+    {
+        DataTable? dataTable;
+        Dictionary<string, dynamic> targetValue = new Dictionary<string, dynamic>();
+        using (var reader = dbConnection.ExecuteReader($"Select * from {table};", CommandBehavior.SchemaOnly))
+        {
+            dataTable = reader.GetSchemaTable();
+        }
+
+        foreach (DataRow row in dataTable.Rows)
+        {
+            foreach (var item in parameter)
+            {
+                if (item.Key.ToLower() == row["ColumnName"].ToString().ToLower())
+                {
+                    Console.WriteLine($"Model Match Name : {item.Key} DB ColumnName: {row["ColumnName"]} DataType: {row["DataTypeName"]}");
+                    var convertedValue = GetTypeFromDBType(row["DataTypeName"].ToString(), item.Value);
+                    targetValue.Add(item.Key, convertedValue);
+                    break;
+                }
+            }
+            //var name = row["ColumnName"];
+            //var size = row["ColumnSize"]; 
+            //var dataType = row["DataTypeName"];
+            //Console.WriteLine("ColumnName={0}", row.Field<string>("ColumnName"));
+        }
+        
+        
+        return targetValue;
+    }
+
+    public static dynamic GetTypeFromDBType(string sqlServerDataType,  string value)
+    {
+        dynamic returnValue = null;
+        if (value is not null)
+        {
+            switch (sqlServerDataType.ToLower())
+            {
+                case "int":
+                case "smallint":
+                case "tinyint":
+                    returnValue = int.Parse(value);
+                    break;
+                case "bigint":
+                    returnValue = long.Parse(value);
+                    break;
+                case "decimal":
+                case "money":
+                    returnValue = decimal.Parse(value);
+                    break;
+                case "float":
+                    returnValue = float.Parse(value);
+                    break;
+                case "real":
+                    returnValue = double.Parse(value);
+                    break;
+                case "char":
+                    returnValue = char.Parse(value);
+                    break;
+                case "nvarchar":
+                case "varchar":
+                case "text":
+                    returnValue = value;
+                    break;
+                //return "string";
+                case "datetime":
+                case "smalldatetime":
+                case "date":
+                    returnValue =DateTime.Parse(value);
+                    break;
+                case "bit":
+                    returnValue = bool.Parse(value);
+                    break;
+                case "image":
+                case "varbinary":
+                case "binary":
+                    byte[] btVal = Encoding.ASCII.GetBytes(value);
+                    returnValue = btVal;
+                    break;
+                default:
+                    // Handle unsupported data types or provide a more generic option
+                    // Consider logging or throwing an exception for unknown types
+                    returnValue = value;
+                    break;
+                    //return "object";
+            }
+        }
+        return returnValue;
+    }
+
 }

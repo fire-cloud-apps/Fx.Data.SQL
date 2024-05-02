@@ -1,6 +1,7 @@
 ﻿using Fx.Data.SQL.Helpers;
 using RepoDb;
 using System;
+using System.Data;
 using System.Linq;
 using Parameters = System.Collections.Generic.Dictionary<string, string>;
 
@@ -27,13 +28,14 @@ public partial class SQLEntityService
     public long Create(string entity, Parameters jsonData)
     {
         var parameter = Conversions.ParameterConversion(jsonData);
+        //var parameter = Conversions.DataTypeConversion(jsonData, DbConnection, entity);
         //Other Errors: If the data mismatch happens during conversion, it may throw an error.
         #region
         //Ref: https://repodb.net/operation/insert via via Anonymous Type.
         #endregion
         int id;
         using (var connection = DbConnection)
-        {
+        {            
             id = connection.Insert<int>(entity, parameter);
         }
         return id;
@@ -115,5 +117,7 @@ public partial class SQLEntityService
         return truncatedRows;
     }
     #endregion
+
+
 }
 

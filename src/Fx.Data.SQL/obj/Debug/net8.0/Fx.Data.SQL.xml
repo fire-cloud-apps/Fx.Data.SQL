@@ -163,6 +163,7 @@
             <returns></returns>
         </member>
         <member name="M:Fx.Data.SQL.Helpers.Conversions.GetType(System.String)">
+            TODO: Need to extend this method for all Data Types.
             <summary>
             Converts to various Types.
             Currently Supported types: int,float,long, boolean, datetime.
@@ -227,16 +228,6 @@
             Filter object with 'And' / 'Or'.
             </summary>
         </member>
-        <member name="P:Fx.Data.SQL.Helpers.Filter.And">
-            <summary>
-            'And' Condition as a List
-            </summary>
-        </member>
-        <member name="P:Fx.Data.SQL.Helpers.Filter.Or">
-            <summary>
-            'OR' Condition as a list
-            </summary>
-        </member>
         <member name="T:Fx.Data.SQL.Helpers.Sort">
             <summary>
             Sort conditions
@@ -250,6 +241,16 @@
         <member name="P:Fx.Data.SQL.Helpers.Sort.OrderBy">
             <summary>
             Order By 'Descending' or 'Ascending'
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.InputFields.Value1">
+            <summary>
+            Used for 'between' and 'In' Operators
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.InputFields.Value2">
+            <summary>
+            Used for 'between' and 'In' Operators
             </summary>
         </member>
         <member name="P:Fx.Data.SQL.Helpers.InputFields.Condition">
