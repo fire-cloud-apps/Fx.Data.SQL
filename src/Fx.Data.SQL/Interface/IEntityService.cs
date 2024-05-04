@@ -20,6 +20,14 @@ public interface IEntityService
     /// Get the data by unique 'Id'. The field should be in the name of 'id' or 'Id'.
     /// </summary>
     /// <param name="table">Table name, which exists in the database.</param>
+    /// <param name="field">Unique field's name, in which the search should perform.</param>
+    /// <param name="value">A value in which will be search in the database.</param>
+    /// <returns>returns the table data</returns>
+    dynamic? GetByUniqueId(string table, string field, string value);
+    /// <summary>
+    /// Get the data by unique 'Id'. The field should be in the name of 'id' or 'Id'.
+    /// </summary>
+    /// <param name="table">Table name, which exists in the database.</param>
     /// <param name="id">unique id's value</param>
     /// <returns>returns the table data</returns>
     dynamic? GetById(string table, string id);

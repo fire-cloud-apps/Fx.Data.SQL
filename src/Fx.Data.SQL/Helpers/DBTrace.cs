@@ -1,7 +1,9 @@
-﻿using RepoDb;
+﻿using Microsoft.Extensions.Logging;
+using RepoDb;
 using RepoDb.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,14 @@ using System.Threading.Tasks;
 namespace Fx.Data.SQL.Helpers;
 public class DBTrace : ITrace
 {
+    public DBTrace()
+    {
+
+    }
+    //public DBTrace(ILogger logger)
+    //{
+
+    //}
     void ITrace.AfterExecution<TResult>(ResultTraceLog<TResult> log)
     {
         Console.WriteLine($"After Execution SQL Statement: {log.ExecutionTime} IsError:{log.BeforeExecutionLog.IsThrowException}");
@@ -16,7 +26,6 @@ public class DBTrace : ITrace
 
     void ITrace.BeforeExecution(CancellableTraceLog log)
     {        
-        
         Console.WriteLine($"Before Execution SQL Statement: {log.Statement} Key: {log.Key}");
     }
 

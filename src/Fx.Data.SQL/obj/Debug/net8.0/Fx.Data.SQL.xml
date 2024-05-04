@@ -75,6 +75,15 @@
             <param name="table"><inheritdoc/></param>
             <returns><inheritdoc/></returns>
         </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.GetByUniqueId(System.String,System.String,System.String)">
+            <summary>
+            <inheritdoc />
+            </summary>
+            <param name="table"> <inheritdoc /></param>
+            <param name="field"> <inheritdoc /></param>
+            <param name="value"> <inheritdoc /></param>
+            <returns> <inheritdoc /></returns>
+        </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.GetById(System.String,System.String)">
             <summary>
             <inheritdoc />
@@ -108,7 +117,7 @@
             <inheritdoc/>
             </summary>
             <param name="entity"><inheritdoc/> </param>
-            <param name="fieldToSum"><inheritdoc/> </param>
+            <param name="fields"><inheritdoc/> </param>
             <param name="filter"><inheritdoc/></param>
             <returns><inheritdoc/></returns>
         </member>
@@ -117,7 +126,7 @@
             <inheritdoc/>
             </summary>
             <param name="entity"><inheritdoc/> </param>
-            <param name="fieldToSum"><inheritdoc/> </param>
+            <param name="fields"><inheritdoc/> </param>
             <param name="filter"> <inheritdoc/> </param>
             <returns> <inheritdoc/> </returns>
         </member>
@@ -277,6 +286,15 @@
              <summary>
              Entity Service Interface to implement in RDBMS
             </summary>
+        </member>
+        <member name="M:Fx.Data.SQL.Interface.IEntityService.GetByUniqueId(System.String,System.String,System.String)">
+            <summary>
+            Get the data by unique 'Id'. The field should be in the name of 'id' or 'Id'.
+            </summary>
+            <param name="table">Table name, which exists in the database.</param>
+            <param name="field">Unique field's name, in which the search should perform.</param>
+            <param name="value">A value in which will be search in the database.</param>
+            <returns>returns the table data</returns>
         </member>
         <member name="M:Fx.Data.SQL.Interface.IEntityService.GetById(System.String,System.String)">
             <summary>

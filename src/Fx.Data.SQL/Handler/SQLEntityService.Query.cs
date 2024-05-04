@@ -14,6 +14,27 @@ public partial class SQLEntityService
 {
     #region Get Methods
 
+    #region Get By UniqueId
+    /// <summary>
+    /// <inheritdoc />
+    /// </summary>
+    /// <param name="table"> <inheritdoc /></param>
+    /// <param name="field"> <inheritdoc /></param>
+    /// <param name="value"> <inheritdoc /></param>
+    /// <returns> <inheritdoc /></returns>
+    public dynamic? GetByUniqueId(string table, string field, string value)
+    {
+        IEnumerable<dynamic> recordSet;
+        using (var connection = DbConnection)
+        {
+            //Ref: https://repodb.net/class/parameter#queryfield
+            recordSet = connection.Query(table, new QueryField(field, value), 
+                trace: TraceFactory.CreateTracer());
+        }
+        return recordSet.FirstOrDefault();
+    }
+    #endregion
+
     #region Get By Id
     /// <summary>
     /// <inheritdoc />

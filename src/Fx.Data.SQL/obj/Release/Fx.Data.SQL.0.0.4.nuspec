@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Fx.Data.SQL</id>
+    <version>0.0.4</version>
+    <authors>SRG</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>Readme.md</readme>
+    <description>Package Description</description>
+    <copyright>Firecloud Service @2024</copyright>
+    <repository type="git" commit="efdbe39bf79abd5b9be68059a170731eade535ea" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="2.2.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="8.0.1" exclude="Build,Analyzers" />
+        <dependency id="RepoDb.MySql" version="1.13.1" exclude="Build,Analyzers" />
+        <dependency id="RepoDb.PostgreSql" version="1.13.1" exclude="Build,Analyzers" />
+        <dependency id="RepoDb.PostgreSql.BulkOperations" version="1.13.1" exclude="Build,Analyzers" />
+        <dependency id="RepoDb.SqlServer" version="1.13.1" exclude="Build,Analyzers" />
+        <dependency id="RepoDb.SqlServer.BulkOperations" version="1.13.1" exclude="Build,Analyzers" />
+        <dependency id="RepoDb.Sqlite.Microsoft" version="1.13.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\bin\Release\net8.0\Fx.Data.SQL.dll" target="lib\net8.0\Fx.Data.SQL.dll" />
+    <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\bin\Release\net8.0\Fx.Data.SQL.xml" target="lib\net8.0\Fx.Data.SQL.xml" />
+    <file src="C:\Works\Github\Fx.Data.SQL\src\Fx.Data.SQL\Readme.md" target="\Readme.md" />
+  </files>
+</package>
