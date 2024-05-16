@@ -163,7 +163,9 @@ public class Conversions
                             objValue = value as string;
                             break;
                     }
-                    Console.WriteLine($"DataType Match for the value '{value}' is '{regex.Key}'");
+                    string keyVal = regex.Key.Length > 10 ? regex.Key.Substring(0, 8) : regex.Key;
+                    Console.WriteLine(
+                        $"DataType Match for the value '{value}' is '{keyVal}'");
                     break;
                 }
             }

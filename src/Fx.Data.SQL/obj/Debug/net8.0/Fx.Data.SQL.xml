@@ -63,7 +63,7 @@
              <returns>Record 'id' of the inserted Object.</returns>
         </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Update(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <inheritdoc cref="!:IEntityService.Update(string, string, Parameters)" />
+            <inheritdoc cref="!:IEntityService.Update(string, string, Parameters)" />    
         </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Update(System.String,System.Collections.Generic.IList{System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
             <inheritdoc cref="!:IEntityService.Update(string, string, IList&lt;string&gt;, Parameters)" />

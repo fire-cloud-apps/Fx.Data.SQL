@@ -44,7 +44,7 @@ public partial class SQLEntityService
     #endregion
 
     #region Update
-    ///<inheritdoc cref="IEntityService.Update(string, string, Parameters)" />
+    ///<inheritdoc cref="IEntityService.Update(string, string, Parameters)" />    
     public dynamic? Update(string entity, Parameters jsonData)
     {
         var parameter = Conversions.ParameterConversion(jsonData);

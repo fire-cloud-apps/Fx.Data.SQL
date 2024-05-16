@@ -4,10 +4,49 @@
         <name>Fx.Data.SQL</name>
     </assembly>
     <members>
+        <member name="T:Fx.Data.SQL.ConditionConstant">
+            <summary>
+            Conditional Constants
+            </summary>
+        </member>
+        <member name="F:Fx.Data.SQL.ConditionConstant.GreaterThen">
+            <summary>
+            Used for the condition Greater Then
+            </summary>
+        </member>
+        <member name="F:Fx.Data.SQL.ConditionConstant.GreaterThenEqual">
+            <summary>
+            Used for the condition Greater Then Equal
+            </summary>
+        </member>
+        <member name="F:Fx.Data.SQL.ConditionConstant.LesserThen">
+            <summary>
+            Used for the condition Lesser Then
+            </summary>
+        </member>
+        <member name="F:Fx.Data.SQL.ConditionConstant.LesserThenEqual">
+            <summary>
+            Used for the condition Lesser Then Equal
+            </summary>
+        </member>
         <member name="T:Fx.Data.SQL.Handler.SQLEntityService">
             <summary>
             SQL Server Entity Service to handle CRUD Operations
             </summary>
+        </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.#ctor(System.Data.IDbConnection,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            SQL Entity Service which initializes the SQLServer, MySQL, SQLite, PostgreSQL
+            </summary>
+            <param name="dbConnection">DB Connectivity</param>
+            <param name="logger">Logger</param>
+        </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes any query
+            </summary>
+            <param name="sqlQuery">execute any query</param>
+            <returns>returns the resulted from the query</returns>
         </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Create(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
              <summary>
@@ -36,6 +75,15 @@
             <param name="table"><inheritdoc/></param>
             <returns><inheritdoc/></returns>
         </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.GetByUniqueId(System.String,System.String,System.String)">
+            <summary>
+            <inheritdoc />
+            </summary>
+            <param name="table"> <inheritdoc /></param>
+            <param name="field"> <inheritdoc /></param>
+            <param name="value"> <inheritdoc /></param>
+            <returns> <inheritdoc /></returns>
+        </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.GetById(System.String,System.String)">
             <summary>
             <inheritdoc />
@@ -46,6 +94,14 @@
         </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.ExecuteQuery(System.String,Fx.Data.SQL.Helpers.Conditions)">
             <returns></returns>
+        </member>
+        <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Count(System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="table"><inheritdoc/> </param>
+            <param name="filter"> <inheritdoc/> </param>
+            <returns> <inheritdoc/> </returns>
         </member>
         <member name="M:Fx.Data.SQL.Handler.SQLEntityService.Sum(System.String,System.String,System.Collections.Generic.List{Fx.Data.SQL.Helpers.Filter})">
             <summary>
@@ -61,7 +117,7 @@
             <inheritdoc/>
             </summary>
             <param name="entity"><inheritdoc/> </param>
-            <param name="fieldToSum"><inheritdoc/> </param>
+            <param name="fields"><inheritdoc/> </param>
             <param name="filter"><inheritdoc/></param>
             <returns><inheritdoc/></returns>
         </member>
@@ -70,26 +126,53 @@
             <inheritdoc/>
             </summary>
             <param name="entity"><inheritdoc/> </param>
-            <param name="fieldToSum"><inheritdoc/> </param>
+            <param name="fields"><inheritdoc/> </param>
             <param name="filter"> <inheritdoc/> </param>
             <returns> <inheritdoc/> </returns>
         </member>
-        <member name="P:Fx.Data.SQL.Helpers.Conditions.Condition">
+        <member name="T:Fx.Data.SQL.Helpers.Conditions">
             <summary>
-            gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
+            Conditions query.
             </summary>
         </member>
-        <member name="T:Fx.Data.SQL.Helpers.QueryFilter">
+        <member name="P:Fx.Data.SQL.Helpers.Conditions.Page">
             <summary>
-            Which is an alternative of QueryField
+            Set the on the condition, form which page we need to read. Page stats from 0, Default value is '0'.
             </summary>
         </member>
-        <member name="P:Fx.Data.SQL.Helpers.QueryFilter.DataType">
+        <member name="P:Fx.Data.SQL.Helpers.Conditions.RowsPerBatch">
             <summary>
-            Optional lets have this, if required we can use it for some datatype.
+            No of records to be retrieved from the database.
             </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Conversions">
+            <summary>
+            Very much to convert all kind of data type from C# to RDBMS
+            </summary>
+        </member>
+        <member name="M:Fx.Data.SQL.Helpers.Conversions.ParameterConversion(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Used to convert the parameter value to the right data type.
+            </summary>
+            <param name="parameter">Dictionary object</param>
+            <returns>returns the target data type.</returns>
+        </member>
+        <member name="M:Fx.Data.SQL.Helpers.Conversions.DictionaryToJson(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Converts the dictionary Object as 'JSON' Data.
+            </summary>
+            <param name="dict">Dictionary Object</param>
+            <returns>returns a JSON String</returns>
+        </member>
+        <member name="M:Fx.Data.SQL.Helpers.Conversions.GetOperation(System.String)">
+            <summary>
+            Get the Operation condition to be used which is equivalent to RepoDb 'Operation'.
+            </summary>
+            <param name="condition">the condition string as 'gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations''.</param>
+            <returns></returns>
         </member>
         <member name="M:Fx.Data.SQL.Helpers.Conversions.GetType(System.String)">
+            TODO: Need to extend this method for all Data Types.
             <summary>
             Converts to various Types.
             Currently Supported types: int,float,long, boolean, datetime.
@@ -99,6 +182,90 @@
             </summary>
             <param name="value">actual value to be converted</param>
             <returns>converted value return with right data type.</returns>  
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.CustomDataType">
+            <summary>
+            For more complex datatypes, we should use this method to identify a target data type form the sender.
+            </summary>
+            <remarks>
+            https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
+            </remarks>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.CustomDataType.Type">
+            <summary>
+            Target Data Type as string. Eg. 'byte[]', Guid, Char[], XML or even string etc.
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.CustomDataType.Value">
+            <summary>
+            Data valye as string.
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.TraceFactory">
+            <summary>
+            Trance Factory used to capture the executed query.
+            </summary>
+        </member>
+        <member name="M:Fx.Data.SQL.Helpers.TraceFactory.CreateTracer">
+            <summary>
+            Enables the Traces using the below method.
+            </summary>
+            <returns>returns trace information</returns>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.FilterParams">
+            <summary>
+            Filter Params
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.FilterParams.Fields">
+            <summary>
+            Fields to return or columns where operations to be conducted.
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.And">
+            <summary>
+            "AND" Condition
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Or">
+            <summary>
+            "OR" condition
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Filter">
+            <summary>
+            Filter object with 'And' / 'Or'.
+            </summary>
+        </member>
+        <member name="T:Fx.Data.SQL.Helpers.Sort">
+            <summary>
+            Sort conditions
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Sort.Field">
+            <summary>
+            Sorting Field
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.Sort.OrderBy">
+            <summary>
+            Order By 'Descending' or 'Ascending'
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.InputFields.Value1">
+            <summary>
+            Used for 'between' and 'In' Operators
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.InputFields.Value2">
+            <summary>
+            Used for 'between' and 'In' Operators
+            </summary>
+        </member>
+        <member name="P:Fx.Data.SQL.Helpers.InputFields.Condition">
+            <summary>
+            gt, gte, lt, lte, eq, neq, lk, nlk, bt, nbt, in, nin => all from 'RepoDb.Enumerations'
+            </summary>
         </member>
         <member name="P:Fx.Data.SQL.Helpers.ResponseModel.Success">
             <summary>
@@ -119,6 +286,15 @@
              <summary>
              Entity Service Interface to implement in RDBMS
             </summary>
+        </member>
+        <member name="M:Fx.Data.SQL.Interface.IEntityService.GetByUniqueId(System.String,System.String,System.String)">
+            <summary>
+            Get the data by unique 'Id'. The field should be in the name of 'id' or 'Id'.
+            </summary>
+            <param name="table">Table name, which exists in the database.</param>
+            <param name="field">Unique field's name, in which the search should perform.</param>
+            <param name="value">A value in which will be search in the database.</param>
+            <returns>returns the table data</returns>
         </member>
         <member name="M:Fx.Data.SQL.Interface.IEntityService.GetById(System.String,System.String)">
             <summary>
